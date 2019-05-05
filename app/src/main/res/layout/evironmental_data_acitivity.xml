@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -12,82 +13,91 @@
 
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        tools:context=".CheckEnvironmentalDataActivity">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:text="@string/classroom"
-            android:textColor="@android:color/black"
-            android:textSize="20sp" />
 
-        <TextView
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/darker_gray"
-            android:gravity="center"
-            android:text="@{data.clasroom}"
-            android:textColor="@android:color/black"
-            android:textSize="40sp" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            tools:context=".CheckEnvironmentalDataActivity">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            <include layout="@layout/toolbar"/>
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
                 android:gravity="center"
-                android:text="@string/temperature"
+                android:text="@string/classroom"
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:text="@string/co2"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_weight="0.5"
+                android:background="@android:color/darker_gray"
                 android:gravity="center"
-                android:text="@{String.valueOf(data.temperature)}"
+                android:text="@{data.clasroom}"
                 android:textColor="@android:color/black"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:textSize="40sp" />
 
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="@{String.valueOf(data.CO2)}"
-                android:textColor="@android:color/black"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="@string/temperature"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="@string/co2"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="@{String.valueOf(data.temperature)}"
+                    android:textColor="@android:color/black"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="@{String.valueOf(data.CO2)}"
+                    android:textColor="@android:color/black"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
         </LinearLayout>
-
-
-    </LinearLayout>
+    </ScrollView>
 </layout>

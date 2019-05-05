@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            tools:context=".View.EditAccountActivity">
+
+            <include
+                layout="@layout/toolbar"
+                android:baselineAligned="false" />
+
+            <EditText
+                android:id="@+id/editUsername"
+                android:layout_width="250dp"
+                android:layout_marginTop="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/username"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/editPassword"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:textAlignment="center" />
+
+
+            <EditText
+                android:id="@+id/editPasswordConfirm"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:textAlignment="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="100dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/deleteAccountButton"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:text="@string/delete_account" />
+
+                <Button
+                    android:id="@+id/saveAccountButton"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:text="@string/save" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</layout>
