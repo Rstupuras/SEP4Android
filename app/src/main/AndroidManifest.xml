@@ -19,11 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.CheckEnvironmentalDataActivity" />
-<<<<<<< HEAD
+
         <activity android:name=".View.AllClassroomsActivity" />
 
-=======
->>>>>>> d2b759095260b6ab9002cbf85c390946d8d93deb
     </application>
 
 </manifest>
