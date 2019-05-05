@@ -20,6 +20,7 @@ public class EnvironmentalDataRepository {
         return instance;
     }
 
+    //pretend to get data from api
     public MutableLiveData<List<EnvironmentalData>> getEnvironmentalData() {
         setEnvironmentalData();
         MutableLiveData<List<EnvironmentalData>> data = new MutableLiveData<>();

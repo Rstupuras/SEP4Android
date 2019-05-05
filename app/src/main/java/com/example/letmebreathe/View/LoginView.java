@@ -50,7 +50,7 @@ public class LoginView extends AppCompatActivity {
             public void onClick(View v) {
                 boolean validateLogin = loginViewModel.method(String.valueOf(username.getText()), String.valueOf(password.getText()));
                 if (validateLogin) {
-                    Intent myIntent = new Intent(LoginView.this, CheckEnvironmentalDataActivity.class);
+                    Intent myIntent = new Intent(LoginView.this, AllClassroomsActivity.class);
                     LoginView.this.startActivity(myIntent);
                 }
                 else

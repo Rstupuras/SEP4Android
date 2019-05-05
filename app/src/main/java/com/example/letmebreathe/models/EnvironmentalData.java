@@ -1,10 +1,11 @@
 package com.example.letmebreathe.models;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
 import static java.lang.Math.round;
 
-public class EnvironmentalData {
+public class EnvironmentalData implements Serializable {
 
 
     private String location;
