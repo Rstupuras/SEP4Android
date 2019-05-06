@@ -11,36 +11,69 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.letmebreathe.BR;
 import com.example.letmebreathe.R;
+import com.example.letmebreathe.adapters.RecyclerAdapter;
 import com.example.letmebreathe.databinding.EvironmentalDataAcitivityBinding;
+import com.example.letmebreathe.databinding.Testholder2Binding;
 import com.example.letmebreathe.models.EnvironmentalData;
+import com.example.letmebreathe.viewModels.AllClassroomsViewModel;
 import com.example.letmebreathe.viewModels.CheckEnvironmentalDataViewModel;
 
 import java.util.ArrayList;
 
-public class CheckEnvironmentalDataActivity extends AppCompatActivity {
+public class CheckEnvironmentalDataActivity extends AllClassroomsActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private CheckEnvironmentalDataViewModel checkEnvironmentalDataViewModel;
 
     private ArrayList<EnvironmentalData> data;
 
+
+
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        EvironmentalDataAcitivityBinding binding = DataBindingUtil.setContentView(this, R.layout.evironmental_data_acitivity);
-        binding.setLifecycleOwner(this);
+        Testholder2Binding binding = DataBindingUtil.setContentView(this, R.layout.testholder2);
+        binding.setLifecycleOwner(CheckEnvironmentalDataActivity.this);
+
 
         checkEnvironmentalDataViewModel = ViewModelProviders.of(this).get(CheckEnvironmentalDataViewModel.class);
         checkEnvironmentalDataViewModel.init();
         binding.setVariable(BR.data, checkEnvironmentalDataViewModel);
 
+
+        configureToolbar();
+
     }
 
 
+    public void configureToolbar() {
+//        setContentView(R.layout.drawer_layout);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle
+                (this, drawerLayout, toolbar, R.string.second, R.string.third);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.navigation);
+        navigationView.setNavigationItemSelectedListener(this);
+        //setContentView(R.layout.activity_allclassrooms);
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        return false;
+    }
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -35,7 +36,16 @@ public class AllClassroomsActivity extends AppCompatActivity implements Recycler
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_allclassrooms);
+        setContentView(R.layout.testholder);
+
+//        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(myToolbar);
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, myToolbar, R.string.open,R.string.close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
+
+        configureToolbar();
 
         recyclerView = findViewById(R.id.rv);
 
@@ -70,22 +80,37 @@ public class AllClassroomsActivity extends AppCompatActivity implements Recycler
     }
 
     public void configureToolbar() {
-        setContentView(R.layout.drawer_layout);
+//        setContentView(R.layout.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.drawer_layoutas);
+        drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle
                 (this, drawerLayout, toolbar, R.string.second, R.string.third);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(this);
-        setContentView(R.layout.activity_allclassrooms);
+        //setContentView(R.layout.activity_allclassrooms);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        return false;
+        switch (menuItem.getItemId()) {
+            case R.id.drawerAllClassrooms:
+                break;
+            case R.id.drawerEditAccount:
+                Intent editAccountsIntent = new Intent(AllClassroomsActivity.this, EditAccountActivity.class);
+                startActivity(editAccountsIntent);
+                break;
+            case R.id.drawerSettings:
+                Intent settingsIntent = new Intent(AllClassroomsActivity.this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                return true;
+
+        }
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

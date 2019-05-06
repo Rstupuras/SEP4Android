@@ -16,4 +16,8 @@
     <string name="second">second</string>
 
     <string name="third">Third</string>
+
+
+    <string name="open">open</string>
+    <string name="close">close</string>
 </resources>
