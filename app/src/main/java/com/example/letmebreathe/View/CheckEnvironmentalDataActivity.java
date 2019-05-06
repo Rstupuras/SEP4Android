@@ -23,11 +23,10 @@ import com.example.letmebreathe.viewModels.CheckEnvironmentalDataViewModel;
 
 import java.util.ArrayList;
 
-public class CheckEnvironmentalDataActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CheckEnvironmentalDataActivity extends AppCompatActivity {
 
     private CheckEnvironmentalDataViewModel checkEnvironmentalDataViewModel;
-    Toolbar toolbar;
-    DrawerLayout drawerLayout;
+
     private ArrayList<EnvironmentalData> data;
 
     @Override
@@ -40,41 +39,8 @@ public class CheckEnvironmentalDataActivity extends AppCompatActivity implements
         checkEnvironmentalDataViewModel = ViewModelProviders.of(this).get(CheckEnvironmentalDataViewModel.class);
         checkEnvironmentalDataViewModel.init();
         binding.setVariable(BR.data, checkEnvironmentalDataViewModel);
-        configureToolbar();
 
     }
 
-    public void configureToolbar() {
-        setContentView(R.layout.drawer_layout);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.drawer_layoutas);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle
-                (this, drawerLayout, toolbar, R.string.second, R.string.third);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-        switch (menuItem.getItemId()) {
-            case R.id.drawerEditAccount:
-                Intent myIntent = new Intent(CheckEnvironmentalDataActivity.this, EditAccountActivity.class);
-                CheckEnvironmentalDataActivity.this.startActivity(myIntent);
-                break;
-            case R.id.drawerSettings:
-                Intent myIntent1 = new Intent(CheckEnvironmentalDataActivity.this, SettingsActivity.class);
-                CheckEnvironmentalDataActivity.this.startActivity(myIntent1);
-                break;
-            default:
-                Toast.makeText(this, "Nothing", Toast.LENGTH_LONG).show();
-        }
-        DrawerLayout drawer = findViewById(R.id.drawer_layoutas);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 }
