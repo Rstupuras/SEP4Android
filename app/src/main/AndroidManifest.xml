@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".View.AllAccountsActivity"></activity>
+        <activity android:name=".View.AllUsersActivity"/>
         <activity android:name=".View.SettingsActivity" />
-        <activity android:name=".View.EditAccountActivity" />
+        <activity android:name=".View.TeacherEditAccountActivity" />
+        <activity android:name=".View.AdminEditAccountActivity"/>
         <activity android:name=".View.LoginView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

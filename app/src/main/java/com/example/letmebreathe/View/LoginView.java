@@ -54,7 +54,7 @@ public class LoginView extends AppCompatActivity {
                         LoginView.this.startActivity(startUserActivity);
                         break;
                     case LoginViewModel.LOGIN_ADMIN:
-                        Intent startAdminActivity = new Intent(LoginView.this, AllAccountsActivity.class);
+                        Intent startAdminActivity = new Intent(LoginView.this, AllUsersActivity.class);
                         LoginView.this.startActivity(startAdminActivity);
                         break;
                     case LoginViewModel.DENIED:

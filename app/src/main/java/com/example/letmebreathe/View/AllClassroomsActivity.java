@@ -21,7 +21,6 @@ import com.example.letmebreathe.adapters.ClassroomRecyclerAdapter;
 import com.example.letmebreathe.models.EnvironmentalData;
 import com.example.letmebreathe.viewModels.AllClassroomsViewModel;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +35,7 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.testholder);
+        setContentView(R.layout.activity_allclassrooms);
 
 //        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(myToolbar);
@@ -100,8 +99,8 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
         switch (menuItem.getItemId()) {
             case R.id.drawerAllClassrooms:
                 break;
-            case R.id.drawerEditAccount:
-                Intent editAccountsIntent = new Intent(AllClassroomsActivity.this, EditAccountActivity.class);
+            case R.id.drawerTeacherEditAccount:
+                Intent editAccountsIntent = new Intent(AllClassroomsActivity.this, TeacherEditAccountActivity.class);
                 startActivity(editAccountsIntent);
                 break;
             case R.id.drawerSettings:

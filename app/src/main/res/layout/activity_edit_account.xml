@@ -12,77 +12,122 @@
 
     </data>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fillViewport="true">
+    <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/drawer_layout_teacher_edit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+
+        <FrameLayout
+            android:id="@+id/frame_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent" />
 
-            android:orientation="vertical"
-            tools:context=".View.EditAccountActivity">
+        <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/brown"
+            android:orientation="vertical">
 
-            <include
-                layout="@layout/toolbar"
-                android:baselineAligned="false" />
-
-            <EditText
-                android:id="@+id/editUsername"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="100dp"
-                android:layout_marginBottom="10dp"
-                android:hint="@string/username"
-                android:text="@{data.username}"
-                android:textAlignment="center" />
-
-            <EditText
-                android:id="@+id/editPassword"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:textAlignment="center" />
-
-
-            <EditText
-                android:id="@+id/editPasswordConfirm"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:hint="@string/confirm_password"
-                android:inputType="textPassword"
-                android:textAlignment="center" />
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="100dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_gravity="left">
 
-                <Button
-                    android:id="@+id/deleteAccountButton"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:text="@string/delete_account" />
+                <android.support.design.widget.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <Button
-                    android:id="@+id/saveAccountButton"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:text="@string/save" />
-            </LinearLayout>
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar_teacher_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/green"
+
+                        android:minHeight="?attr/actionBarSize" />
+                </android.support.design.widget.AppBarLayout>
+            </RelativeLayout>
 
 
-        </LinearLayout>
-    </ScrollView>
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical"
+                    tools:context=".View.TeacherEditAccountActivity">
+
+
+                    <EditText
+                        android:id="@+id/editUsername"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="100dp"
+                        android:layout_marginBottom="10dp"
+                        android:hint="@string/username"
+                        android:text="@{data.username}"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/editPassword"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:textAlignment="center" />
+
+
+                    <EditText
+                        android:id="@+id/editPasswordConfirm"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:hint="@string/confirm_password"
+                        android:inputType="textPassword"
+                        android:textAlignment="center" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="100dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/deleteAccountButton"
+                            android:layout_width="150dp"
+                            android:layout_height="50dp"
+                            android:layout_marginEnd="50dp"
+                            android:text="@string/delete_account" />
+
+                        <Button
+                            android:id="@+id/saveAccountButton"
+                            android:layout_width="150dp"
+                            android:layout_height="50dp"
+                            android:text="@string/save" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+        </android.support.design.widget.CoordinatorLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navigation_teacher_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/drawer_menu_user"/>
+
+
+    </android.support.v4.widget.DrawerLayout>
+
+
 </layout>

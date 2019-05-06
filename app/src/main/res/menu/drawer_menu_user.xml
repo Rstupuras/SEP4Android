@@ -11,7 +11,7 @@
     <item>
         <menu>
             <item
-                android:id="@+id/drawerEditAccount"
+                android:id="@+id/drawerTeacherEditAccount"
                 android:title="@string/edit_account" />
             <item
                 android:id="@+id/drawerSettings"

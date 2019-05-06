@@ -18,17 +18,13 @@ import android.view.MenuItem;
 
 import com.example.letmebreathe.R;
 import com.example.letmebreathe.adapters.AccountRecyclerAdapter;
-import com.example.letmebreathe.adapters.ClassroomRecyclerAdapter;
 import com.example.letmebreathe.models.Account;
-import com.example.letmebreathe.models.EnvironmentalData;
 import com.example.letmebreathe.viewModels.AllAccountsViewModel;
-import com.example.letmebreathe.viewModels.AllClassroomsViewModel;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllAccountsActivity extends AppCompatActivity implements AccountRecyclerAdapter.OnListItemClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class AllUsersActivity extends AppCompatActivity implements AccountRecyclerAdapter.OnListItemClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView recyclerView;
     private AccountRecyclerAdapter adapter;
@@ -39,7 +35,7 @@ public class AllAccountsActivity extends AppCompatActivity implements AccountRec
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.testholder);
+        setContentView(R.layout.activity_all_users);
 
 //        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(myToolbar);
@@ -50,7 +46,7 @@ public class AllAccountsActivity extends AppCompatActivity implements AccountRec
 
         configureToolbar();
 
-        recyclerView = findViewById(R.id.rv);
+        recyclerView = findViewById(R.id.rvAccounts);
 
         allAccountsViewModel = ViewModelProviders.of(this).get(AllAccountsViewModel.class);
 
@@ -68,8 +64,8 @@ public class AllAccountsActivity extends AppCompatActivity implements AccountRec
     }
 
     private void initRecyclerView() {
-        adapter = new AccountRecyclerAdapter(this, (ArrayList<Account>) allAccountsViewModel.getAccountList().getValue(), this);
-        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        adapter = new AccountRecyclerAdapter(AllUsersActivity.this, (ArrayList<Account>) allAccountsViewModel.getAccountList().getValue(), this);
+        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(AllUsersActivity.this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
     }
@@ -77,22 +73,22 @@ public class AllAccountsActivity extends AppCompatActivity implements AccountRec
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
-        Intent intent = new Intent(AllAccountsActivity.this, EditAccountActivity.class);
+        Intent intent = new Intent(AllUsersActivity.this, TeacherEditAccountActivity.class);
         intent.putExtra("account", clickedItemIndex);
         startActivity(intent);
     }
 
     public void configureToolbar() {
 //        setContentView(R.layout.drawer_layout_user);
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar_all_users);
         setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.drawer_layout1);
+        drawerLayout = findViewById(R.id.drawer_layout_all_users);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle
                 (this, drawerLayout, toolbar, R.string.second, R.string.third);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.navigation1);
+        NavigationView navigationView = findViewById(R.id.navigation_all_users);
         navigationView.setNavigationItemSelectedListener(this);
         //setContentView(R.layout.activity_allclassrooms);
     }
@@ -100,19 +96,16 @@ public class AllAccountsActivity extends AppCompatActivity implements AccountRec
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.drawerAllClassrooms:
+            case R.id.drawerAllUsers:
+
                 break;
-            case R.id.drawerEditAccount:
-                Intent editAccountsIntent = new Intent(AllAccountsActivity.this, EditAccountActivity.class);
-                startActivity(editAccountsIntent);
+            case R.id.drawerAdminEditAccount:
+                Intent editAdminAccountsIntent = new Intent(AllUsersActivity.this, AdminEditAccountActivity.class);
+                startActivity(editAdminAccountsIntent);
                 break;
-            case R.id.drawerSettings:
-                Intent settingsIntent = new Intent(AllAccountsActivity.this, SettingsActivity.class);
-                startActivity(settingsIntent);
-                return true;
 
         }
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout_all_users);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

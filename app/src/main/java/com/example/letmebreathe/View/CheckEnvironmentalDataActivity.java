@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -14,7 +15,7 @@ import android.view.MenuItem;
 import com.example.letmebreathe.BR;
 import com.example.letmebreathe.R;
 
-import com.example.letmebreathe.databinding.Testholder2Binding;
+import com.example.letmebreathe.databinding.ActivityCheckEnvironmentalDataBinding;
 import com.example.letmebreathe.models.Account;
 import com.example.letmebreathe.models.EnvironmentalData;
 import com.example.letmebreathe.viewModels.CheckEnvironmentalDataViewModel;
@@ -34,7 +35,7 @@ public class CheckEnvironmentalDataActivity extends AllClassroomsActivity implem
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Testholder2Binding binding = DataBindingUtil.setContentView(this, R.layout.testholder2);
+        ActivityCheckEnvironmentalDataBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_check_environmental_data);
         binding.setLifecycleOwner(CheckEnvironmentalDataActivity.this);
         checkEnvironmentalDataViewModel = ViewModelProviders.of(this).get(CheckEnvironmentalDataViewModel.class);
         checkEnvironmentalDataViewModel.init();
@@ -66,6 +67,24 @@ public class CheckEnvironmentalDataActivity extends AllClassroomsActivity implem
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        return false;
+        switch (menuItem.getItemId()) {
+            case R.id.drawerAllClassrooms:
+                Intent allClassroomsIntent = new Intent(CheckEnvironmentalDataActivity.this, AllClassroomsActivity.class);
+                startActivity(allClassroomsIntent);
+                break;
+            case R.id.drawerTeacherEditAccount:
+                Intent editAccountsIntent = new Intent(CheckEnvironmentalDataActivity.this, TeacherEditAccountActivity.class);
+                startActivity(editAccountsIntent);
+                break;
+            case R.id.drawerSettings:
+                Intent settingsIntent = new Intent(CheckEnvironmentalDataActivity.this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                return true;
+
+        }
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
-}
+    }
+
