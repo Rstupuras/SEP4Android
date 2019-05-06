@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".View.SettingsActivity"></activity>
+        <activity android:name=".View.AllAccountsActivity"></activity>
+        <activity android:name=".View.SettingsActivity" />
         <activity android:name=".View.EditAccountActivity" />
         <activity android:name=".View.LoginView">
             <intent-filter>
@@ -19,9 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.CheckEnvironmentalDataActivity" />
-
         <activity android:name=".View.AllClassroomsActivity" />
-
     </application>
 
 </manifest>

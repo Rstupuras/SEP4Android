@@ -25,9 +25,7 @@ public class CheckEnvironmentalDataViewModel extends ViewModel {
         }
         environmentalDataRepository = EnvironmentalDataRepository.getInstance();
         environmentalData = environmentalDataRepository.getEnvironmentalData();
-        temperature = String.valueOf(environmentalData.getValue().get(environmentalData.getValue().size() - 1).getTemperature())+ '\u00B0';
-        CO2 = String.valueOf(environmentalData.getValue().get(environmentalData.getValue().size() - 1).getCO2());
-        clasroom = environmentalData.getValue().get(environmentalData.getValue().size() - 1).getLocation();
+
     }
 
     public LiveData<List<EnvironmentalData>> getEnvironmentalData() {
@@ -41,8 +39,16 @@ public class CheckEnvironmentalDataViewModel extends ViewModel {
     public String getCO2() {
         return CO2;
     }
+
     public String getClasroom() {
         return clasroom;
     }
+
+    public void setData(int id) {
+        temperature = String.valueOf(environmentalData.getValue().get(id).getTemperature()) + '\u00B0';
+        CO2 = String.valueOf(environmentalData.getValue().get(id).getCO2());
+        clasroom = environmentalData.getValue().get(id).getLocation();
+    }
+
 
 }

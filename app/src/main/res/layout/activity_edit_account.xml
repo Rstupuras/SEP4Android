@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="data"
+            type="com.example.letmebreathe.viewModels.EditAccountViewModel" />
+
+
+    </data>
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -22,11 +33,12 @@
             <EditText
                 android:id="@+id/editUsername"
                 android:layout_width="250dp"
-                android:layout_marginTop="100dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="100dp"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/username"
+                android:text="@{data.username}"
                 android:textAlignment="center" />
 
             <EditText

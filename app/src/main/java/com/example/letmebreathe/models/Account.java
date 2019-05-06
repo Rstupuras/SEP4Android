@@ -1,6 +1,8 @@
 package com.example.letmebreathe.models;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
 
     private String userName;
     private String password;

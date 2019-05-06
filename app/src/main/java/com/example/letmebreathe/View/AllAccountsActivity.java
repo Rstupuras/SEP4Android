@@ -3,7 +3,6 @@ package com.example.letmebreathe.View;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -11,25 +10,29 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.letmebreathe.R;
+import com.example.letmebreathe.adapters.AccountRecyclerAdapter;
 import com.example.letmebreathe.adapters.ClassroomRecyclerAdapter;
+import com.example.letmebreathe.models.Account;
 import com.example.letmebreathe.models.EnvironmentalData;
+import com.example.letmebreathe.viewModels.AllAccountsViewModel;
 import com.example.letmebreathe.viewModels.AllClassroomsViewModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllClassroomsActivity extends AppCompatActivity implements ClassroomRecyclerAdapter.OnListItemClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class AllAccountsActivity extends AppCompatActivity implements AccountRecyclerAdapter.OnListItemClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView recyclerView;
-    private ClassroomRecyclerAdapter adapter;
-    private AllClassroomsViewModel allClassroomsViewModel;
+    private AccountRecyclerAdapter adapter;
+    private AllAccountsViewModel allAccountsViewModel;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
 
@@ -49,13 +52,13 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
 
         recyclerView = findViewById(R.id.rv);
 
-        allClassroomsViewModel = ViewModelProviders.of(this).get(AllClassroomsViewModel.class);
+        allAccountsViewModel = ViewModelProviders.of(this).get(AllAccountsViewModel.class);
 
-        allClassroomsViewModel.init();
+        allAccountsViewModel.init();
 
-        allClassroomsViewModel.getEnvironmentalDataList().observe(this, new Observer<List<EnvironmentalData>>() {
+        allAccountsViewModel.getAccountList().observe(this, new Observer<List<Account>>() {
             @Override
-            public void onChanged(@Nullable List<EnvironmentalData> environmentalData) {
+            public void onChanged(@Nullable List<Account> accounts) {
                 adapter.notifyDataSetChanged();
             }
         });
@@ -65,7 +68,7 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
     }
 
     private void initRecyclerView() {
-        adapter = new ClassroomRecyclerAdapter(this, (ArrayList<EnvironmentalData>) allClassroomsViewModel.getEnvironmentalDataList().getValue(), this);
+        adapter = new AccountRecyclerAdapter(this, (ArrayList<Account>) allAccountsViewModel.getAccountList().getValue(), this);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
@@ -74,9 +77,8 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
-        Intent intent = new Intent(AllClassroomsActivity.this, CheckEnvironmentalDataActivity.class);
-        intent.putExtra("environmentalData", clickedItemIndex);
-        System.out.println(clickedItemIndex);
+        Intent intent = new Intent(AllAccountsActivity.this, EditAccountActivity.class);
+        intent.putExtra("account", clickedItemIndex);
         startActivity(intent);
     }
 
@@ -84,13 +86,13 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
 //        setContentView(R.layout.drawer_layout_user);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer_layout1);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle
                 (this, drawerLayout, toolbar, R.string.second, R.string.third);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.navigation);
+        NavigationView navigationView = findViewById(R.id.navigation1);
         navigationView.setNavigationItemSelectedListener(this);
         //setContentView(R.layout.activity_allclassrooms);
     }
@@ -101,11 +103,11 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
             case R.id.drawerAllClassrooms:
                 break;
             case R.id.drawerEditAccount:
-                Intent editAccountsIntent = new Intent(AllClassroomsActivity.this, EditAccountActivity.class);
+                Intent editAccountsIntent = new Intent(AllAccountsActivity.this, EditAccountActivity.class);
                 startActivity(editAccountsIntent);
                 break;
             case R.id.drawerSettings:
-                Intent settingsIntent = new Intent(AllClassroomsActivity.this, SettingsActivity.class);
+                Intent settingsIntent = new Intent(AllAccountsActivity.this, SettingsActivity.class);
                 startActivity(settingsIntent);
                 return true;
 

@@ -7,7 +7,7 @@
 
 
 <include layout="@layout/activity_allclassrooms"/>
-<include layout="@layout/evironmental_data_acitivity"/>
+
 
 
     <android.support.design.widget.NavigationView
@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:menu="@menu/drawer_menu" />
+        app:menu="@menu/drawer_menu_user" />
 
 
 </android.support.v4.widget.DrawerLayout>

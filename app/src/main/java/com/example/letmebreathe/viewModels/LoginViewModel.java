@@ -14,6 +14,9 @@ public class LoginViewModel extends ViewModel {
     private MutableLiveData<List<Account>> accounts;
     private AccountRepository accountRepository;
     private ArrayList<Account> accountList;
+    public final static String LOGIN_USER = "loginUser";
+    public final static String LOGIN_ADMIN = "loginAdmin";
+    public final static String DENIED = "denied";
 
     public void init() {
         if (accounts != null) {
@@ -29,13 +32,16 @@ public class LoginViewModel extends ViewModel {
     }
 
 
-    public boolean method(String username, String password) {
+    public String checkLogin(String username, String password) {
         for (Account a : accounts.getValue()
         ) {
-            if (a.getUserName().equalsIgnoreCase(username) && a.getPassword().equalsIgnoreCase(password)) {
-                return true;
+            if (a.getUserName().equalsIgnoreCase(username) && a.getPassword().equalsIgnoreCase(password) && !a.isAdmin()) {
+                return LOGIN_USER;
+            }
+            if (a.getUserName().equalsIgnoreCase(username) && a.getPassword().equalsIgnoreCase(password) && a.isAdmin()) {
+                return LOGIN_ADMIN;
             }
         }
-        return false;
+        return DENIED;
     }
 }

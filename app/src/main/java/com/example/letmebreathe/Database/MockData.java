@@ -55,9 +55,15 @@ public class MockData {
 
     private void generateAccounts() {
         Account account = new Account();
-        account.setUserName("admin");
-        account.setPassword("admin");
+        account.setUserName("user");
+        account.setPassword("user");
+        account.setAdmin(false);
         accounts.add(account);
+        Account account2 = new Account();
+        account2.setUserName("admin");
+        account2.setPassword("admin");
+        account2.setAdmin(true);
+        accounts.add(account2);
         for (int i = 0; i < 10; i++) {
             Account account1 = new Account();
             account1.setUserName(randomString());
@@ -73,7 +79,7 @@ public class MockData {
             EnvironmentalData oneData = new EnvironmentalData();
             oneData.setCO2(randomDouble());
             oneData.setTemperature(randomDouble());
-            oneData.setLocation("E.201");
+            oneData.setLocation(randomString());
             data.add(oneData);
         }
     }

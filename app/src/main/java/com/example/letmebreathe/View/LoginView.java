@@ -16,7 +16,6 @@ import com.example.letmebreathe.models.Account;
 import com.example.letmebreathe.R;
 import com.example.letmebreathe.viewModels.LoginViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LoginView extends AppCompatActivity {
@@ -48,15 +47,22 @@ public class LoginView extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean validateLogin = loginViewModel.method(String.valueOf(username.getText()), String.valueOf(password.getText()));
-                if (validateLogin) {
-                    Intent myIntent = new Intent(LoginView.this, AllClassroomsActivity.class);
-                    LoginView.this.startActivity(myIntent);
+                String response = loginViewModel.checkLogin(String.valueOf(username.getText()), String.valueOf(password.getText()));
+                switch (response) {
+                    case LoginViewModel.LOGIN_USER:
+                        Intent startUserActivity = new Intent(LoginView.this, AllClassroomsActivity.class);
+                        LoginView.this.startActivity(startUserActivity);
+                        break;
+                    case LoginViewModel.LOGIN_ADMIN:
+                        Intent startAdminActivity = new Intent(LoginView.this, AllAccountsActivity.class);
+                        LoginView.this.startActivity(startAdminActivity);
+                        break;
+                    case LoginViewModel.DENIED:
+                        Toast.makeText(getApplicationContext(), "DENIED", Toast.LENGTH_SHORT).show();
+                        break;
                 }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),"DENIED", Toast.LENGTH_SHORT).show();
-                }
+
+
             }
         });
 

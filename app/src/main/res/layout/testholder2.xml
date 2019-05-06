@@ -12,132 +12,135 @@
 
     </data>
 
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
-
-
-    <FrameLayout
-        android:id="@+id/frame_layout"
+    <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fillViewport="true">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <FrameLayout
+            android:id="@+id/frame_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            tools:context=".CheckEnvironmentalDataActivity">
+            android:layout_height="match_parent" />
 
-            <RelativeLayout
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="true">
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                >
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                tools:context=".CheckEnvironmentalDataActivity">
 
-                <android.support.design.widget.AppBarLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
-                        android:background="@color/colorAccent"
-                        android:layout_height="?attr/actionBarSize"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left">
+
+                    <android.support.design.widget.AppBarLayout
                         android:layout_width="match_parent"
-                        android:minHeight="?attr/actionBarSize"
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        app:title="toolbar"
-                        xmlns:app="http://schemas.android.com/apk/res-auto" /></android.support.design.widget.AppBarLayout>
-            </RelativeLayout>
+                        android:layout_height="wrap_content">
+
+                        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            android:background="@color/green"
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:gravity="center"
-                android:text="@string/classroom"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
+                            android:minHeight="?attr/actionBarSize" />
+                    </android.support.design.widget.AppBarLayout>
+                </RelativeLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@android:color/darker_gray"
-                android:gravity="center"
-                android:text="@{data.clasroom}"
-                android:textColor="@android:color/black"
-                android:textSize="40sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:gravity="center"
-                android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
                     android:gravity="center"
-                    android:text="@string/temperature"
+                    android:text="@string/classroom"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:gravity="center"
-                    android:text="@string/co2"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_weight="0.5"
+                    android:background="@android:color/darker_gray"
                     android:gravity="center"
-                    android:text="@{String.valueOf(data.temperature)}"
+                    android:text="@{data.clasroom}"
                     android:textColor="@android:color/black"
-                    android:textSize="40sp"
-                    android:textStyle="bold" />
+                    android:textSize="40sp" />
 
-                <TextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_weight="0.5"
                     android:gravity="center"
-                    android:text="@{String.valueOf(data.CO2)}"
-                    android:textColor="@android:color/black"
-                    android:textSize="40sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:text="@string/temperature"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:text="@string/co2"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:text="@{String.valueOf(data.temperature)}"
+                        android:background="@color/red"
+                        android:textColor="@android:color/black"
+                        android:textSize="40sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:text="@{String.valueOf(data.CO2)}"
+                        android:textColor="@android:color/black"
+                        android:textSize="40sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
             </LinearLayout>
+        </ScrollView>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/drawer_menu_user" />
 
 
-        </LinearLayout>
-    </ScrollView>
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/navigation"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:menu="@menu/drawer_menu"/>
-
-
-</android.support.v4.widget.DrawerLayout>
+    </android.support.v4.widget.DrawerLayout>
 </layout>
