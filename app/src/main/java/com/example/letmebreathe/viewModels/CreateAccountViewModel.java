@@ -13,7 +13,6 @@ import com.example.letmebreathe.databinding.ActivityCreateAccountBinding;
 import com.example.letmebreathe.models.Account;
 
 
-
 public class CreateAccountViewModel extends ViewModel {
 
     private Account account;
@@ -33,25 +32,20 @@ public class CreateAccountViewModel extends ViewModel {
     }
 
 
-
-
     public void setAccount(Account account) {
         this.account = account;
     }
 
 
-
-
     public void addAccount() {
 
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        System.out.println(passwordToConfirm);
-        if (account.getPassword().equalsIgnoreCase(passwordToConfirm)) {
+        System.out.println(account.getPasswordToConfirm());
+        if (account.getPassword().equalsIgnoreCase(account.getPasswordToConfirm())) {
             repo.addAccount(account);
             updated.setValue(true);
 
-        }
-        else {
+        } else {
             updated.setValue(false);
         }
     }

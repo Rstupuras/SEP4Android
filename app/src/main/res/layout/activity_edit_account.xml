@@ -99,7 +99,7 @@
                     android:layout_gravity="center"
                     android:backgroundTint="@color/lightblue"
                     android:hint="@string/confirm_password"
-                    android:text="@={data.passwordToConfirm}"
+                    android:text="@={data.account.passwordToConfirm}"
                     android:inputType="textPassword"
                     android:textAlignment="center" />
 

@@ -32,7 +32,7 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
     private Account loggedAccount;
 
 
-    private String passwordToConfirm;
+//    private String passwordToConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
                 if (aBoolean) {
                     Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Passwords do not match or password too short", Toast.LENGTH_SHORT).show();
                 }
             }
         });

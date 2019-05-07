@@ -110,6 +110,7 @@
                         android:layout_width="150dp"
                         android:layout_height="50dp"
                         android:text="@string/save"
+                        android:onClick="@{(view) -> data.addAccount()}"
                         android:background="@color/lightblue"
                         />
                 </LinearLayout>

@@ -48,16 +48,16 @@ public class CreateAccountActivity extends AppCompatActivity implements Navigati
         binding.setVariable(BR.data, createAccountViewModel);
 
 
-
-
-        saveButton = findViewById(R.id.saveCreatedAccountButton);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createAccountViewModel.addAccount();
-            }
-        });
-
+//
+//
+//        saveButton = findViewById(R.id.saveCreatedAccountButton);
+//        saveButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                createAccountViewModel.addAccount();
+//            }
+//        });
+//
 
 
 

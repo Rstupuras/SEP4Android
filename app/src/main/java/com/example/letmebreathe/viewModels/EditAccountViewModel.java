@@ -18,8 +18,8 @@ public class EditAccountViewModel extends ViewModel {
     private MutableLiveData<List<Account>> accountList;
     private AccountRepository repo;
     public MutableLiveData<Boolean> updated;
-
-    private String passwordToConfirm;
+//
+//    private String passwordToConfirm;
 
     public void init() {
         if (accountList != null) {
@@ -41,6 +41,7 @@ public class EditAccountViewModel extends ViewModel {
 //
     public void setAccount(int id) {
         account = accountList.getValue().get(id);
+        account.setPassword("");
     }
 
 
@@ -49,6 +50,7 @@ public class EditAccountViewModel extends ViewModel {
         ) {
             if (a.getUserName().equalsIgnoreCase(username)) {
                 account = a;
+                account.setPassword("");
                 return;
             }
         }
@@ -57,12 +59,11 @@ public class EditAccountViewModel extends ViewModel {
 
 
     public void updateAccount() {
-        if (account.getPassword().equalsIgnoreCase(passwordToConfirm)) {
+        if (account.getPassword().equalsIgnoreCase(account.getPasswordToConfirm()) && account.getPassword().length()>5 && account.getPasswordToConfirm().length()>5) {
             repo.updateAccount(account);
             updated.setValue(true);
 
-        }
-        else {
+        } else {
             updated.setValue(false);
         }
     }
@@ -78,12 +79,6 @@ public class EditAccountViewModel extends ViewModel {
         this.account = account;
     }
 
-    public String getPasswordToConfirm() {
-        return passwordToConfirm;
-    }
 
-    public void setPasswordToConfirm(String passwordToConfirm) {
-        this.passwordToConfirm = passwordToConfirm;
-    }
 
 }
