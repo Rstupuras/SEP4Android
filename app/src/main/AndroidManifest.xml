@@ -15,6 +15,7 @@
         <activity android:name=".View.SettingsActivity" />
         <activity android:name=".View.TeacherEditAccountActivity" />
         <activity android:name=".View.AdminEditAccountActivity"/>
+        <activity android:name=".View.CreateAccountActivity"/>
         <activity android:name=".View.LoginView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

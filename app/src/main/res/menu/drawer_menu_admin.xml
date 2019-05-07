@@ -10,6 +10,10 @@
 
     <item android:title="">
         <menu>
+
+            <item android:id="@+id/drawerCreateAccount"
+                android:title="@string/create_account"/>
+
             <item
                 android:id="@+id/drawerAdminEditAccount"
                 android:title="@string/edit_account" />

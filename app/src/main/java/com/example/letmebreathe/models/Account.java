@@ -40,6 +40,13 @@ public class Account implements Serializable {
         return password;
     }
 
+    public String getPasswordToConfirm() { return password; }
+
+    public void setPasswordToConfirm(String password)
+    {
+
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }

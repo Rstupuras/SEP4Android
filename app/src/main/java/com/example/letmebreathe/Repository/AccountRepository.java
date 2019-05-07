@@ -39,6 +39,12 @@ public class AccountRepository {
         data.updateAccount(account);
     }
 
+    public void addAccount(Account account) {
+        data.addAccount(account);
+    }
+
+
+
 
 
 }

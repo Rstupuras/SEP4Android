@@ -98,11 +98,14 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.drawerAllUsers:
-
                 break;
             case R.id.drawerAdminEditAccount:
                 Intent editAdminAccountsIntent = new Intent(AllUsersActivity.this, AdminEditAccountActivity.class);
                 startActivity(editAdminAccountsIntent);
+                break;
+            case R.id.drawerCreateAccount:
+                Intent createAccountIntent = new Intent(AllUsersActivity.this, CreateAccountActivity.class);
+                startActivity(createAccountIntent);
                 break;
 
         }

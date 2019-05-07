@@ -63,6 +63,10 @@ public class AdminEditAccountActivity extends AppCompatActivity implements Navig
                 break;
             case R.id.drawerAdminEditAccount:
                 break;
+            case R.id.drawerCreateAccount:
+                Intent createAccountIntent = new Intent(AdminEditAccountActivity.this, CreateAccountActivity.class);
+                startActivity(createAccountIntent);
+                break;
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout_admin_edit);
         drawer.closeDrawer(GravityCompat.START);

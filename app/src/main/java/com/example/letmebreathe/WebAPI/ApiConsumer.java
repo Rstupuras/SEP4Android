@@ -73,4 +73,21 @@ public class ApiConsumer {
         });
     }
 
+    public void addAccount(Account account) {
+        Call<Void> call = api.addAccount(account);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    getAccounts();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+
 }
