@@ -1,9 +1,12 @@
 package com.example.letmebreathe.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Account implements Serializable {
 
+    @SerializedName("username")
     private String userName;
     private String password;
     private boolean isAdmin;
