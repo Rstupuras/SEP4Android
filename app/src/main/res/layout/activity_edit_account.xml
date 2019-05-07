@@ -44,83 +44,91 @@
                         android:id="@+id/toolbar_teacher_edit"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
+                        android:minHeight="?attr/actionBarSize"
                         android:theme="@style/AppTheme"
-                        app:titleTextColor="@android:color/white"
 
-                        android:minHeight="?attr/actionBarSize" />
+                        app:titleTextColor="@android:color/white" />
                 </android.support.design.widget.AppBarLayout>
             </RelativeLayout>
 
 
-                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    xmlns:tools="http://schemas.android.com/tools"
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical"
+                tools:context=".View.TeacherEditAccountActivity">
+
+
+                <TextView
+                    android:id="@+id/editUsername"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/border2"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/username"
+                    android:padding="15dp"
+                    android:text="@{data.account.userName}"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/editPassword"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="@color/lightblue"
+                    android:hint="@string/password"
+
+                    android:inputType="textPassword"
+                    android:textAlignment="center"
+                    android:text="@={data.account.password}"/>
+
+
+                <EditText
+                    android:id="@+id/editPasswordConfirm"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/lightblue"
+                    android:hint="@string/confirm_password"
+                    android:text="@={data.passwordToConfirm}"
+                    android:inputType="textPassword"
+                    android:textAlignment="center" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="100dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                    android:orientation="vertical"
-                    tools:context=".View.TeacherEditAccountActivity">
-
-
-                    <EditText
-                        android:id="@+id/editUsername"
-                        android:layout_width="250dp"
+                    <Button
+                        android:id="@+id/deleteAccountButtonTeacher"
+                        android:layout_width="150dp"
                         android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="100dp"
-                        android:layout_marginBottom="10dp"
-                        android:hint="@string/username"
-                        android:text="@{data.username}"
-                        android:textAlignment="center"
-                        android:backgroundTint="@color/lightblue"/>
+                        android:layout_marginEnd="50dp"
+                        android:background="@color/lightblue"
+                        android:text="@string/delete_account" />
 
-                    <EditText
-                        android:id="@+id/editPassword"
-                        android:layout_width="250dp"
+                    <Button
+                        android:id="@+id/saveAccountButtonTeacher"
+                        android:layout_width="150dp"
                         android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:hint="@string/password"
-                        android:inputType="textPassword"
-                        android:textAlignment="center"
-                        android:backgroundTint="@color/lightblue"/>
-
-
-                    <EditText
-                        android:id="@+id/editPasswordConfirm"
-                        android:layout_width="250dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:hint="@string/confirm_password"
-                        android:inputType="textPassword"
-                        android:textAlignment="center"
-                        android:backgroundTint="@color/lightblue"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:layout_marginTop="100dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/deleteAccountButton"
-                            android:layout_width="150dp"
-                            android:layout_height="50dp"
-                            android:layout_marginEnd="50dp"
-                            android:text="@string/delete_account"
-                            android:background="@color/lightblue"/>
-
-                        <Button
-                            android:id="@+id/saveAccountButton"
-                            android:layout_width="150dp"
-                            android:layout_height="50dp"
-                            android:text="@string/save"
-                            android:background="@color/lightblue"/>
-                    </LinearLayout>
-
-
+                        android:background="@color/lightblue"
+                        android:text="@string/save"
+                        android:onClick="@{(view) -> data.updateAccount()}"/>
                 </LinearLayout>
+
+
+            </LinearLayout>
 
         </android.support.design.widget.CoordinatorLayout>
 
@@ -129,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:menu="@menu/drawer_menu_user"/>
+            app:menu="@menu/drawer_menu_user" />
 
 
     </android.support.v4.widget.DrawerLayout>

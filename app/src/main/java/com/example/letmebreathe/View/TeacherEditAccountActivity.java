@@ -1,9 +1,11 @@
 package com.example.letmebreathe.View;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,22 +13,32 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.letmebreathe.BR;
 import com.example.letmebreathe.R;
 import com.example.letmebreathe.databinding.ActivityEditAccountBinding;
+import com.example.letmebreathe.models.Account;
 import com.example.letmebreathe.viewModels.EditAccountViewModel;
 
-public class TeacherEditAccountActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class TeacherEditAccountActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private EditAccountViewModel editAccountViewModel;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
+    private Account loggedAccount;
+
+
+    private String passwordToConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_account);
+
         ActivityEditAccountBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_account);
         binding.setLifecycleOwner(TeacherEditAccountActivity.this);
 
@@ -35,7 +47,24 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
         editAccountViewModel = ViewModelProviders.of(this).get(EditAccountViewModel.class);
         editAccountViewModel.init();
         binding.setVariable(BR.data, editAccountViewModel);
-
+        Intent allClassroomsIntent = getIntent();
+        Bundle data = allClassroomsIntent.getExtras();
+        loggedAccount = (Account) data.getSerializable("loggedAccount");
+        editAccountViewModel.setAccount(loggedAccount.getUserName());
+        editAccountViewModel.updated.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+               if(aBoolean==null)
+               {
+                   return;
+               }
+                if (aBoolean) {
+                    Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 
@@ -73,4 +102,6 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

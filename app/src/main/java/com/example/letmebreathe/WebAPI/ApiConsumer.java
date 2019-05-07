@@ -20,7 +20,8 @@ public class ApiConsumer {
     private Retrofit retrofit;
     private API api;
     ArrayList<Account> accountsToReturn;
-    private  ArrayList<Account> accounts = new ArrayList<>();
+    private ArrayList<Account> accounts = new ArrayList<>();
+
     public static ApiConsumer getInstance() {
         if (instance == null) {
             instance = new ApiConsumer();
@@ -53,6 +54,23 @@ public class ApiConsumer {
         });
         return accounts;
 
+    }
+
+    public void updateAccount(Account account) {
+        Call<Void> call = api.updateAccount(account.getUserName(), account);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    getAccounts();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
     }
 
 }

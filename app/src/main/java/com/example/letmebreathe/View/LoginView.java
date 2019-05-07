@@ -33,7 +33,7 @@ public class LoginView extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
 
-        textas = findViewById(R.id.textelis);
+
         loginButton = findViewById(R.id.loginButton);
 
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
@@ -47,21 +47,21 @@ public class LoginView extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String response = loginViewModel.checkLogin(String.valueOf(username.getText()), String.valueOf(password.getText()));
-                switch (response) {
-                    case LoginViewModel.LOGIN_USER:
-                        Intent startUserActivity = new Intent(LoginView.this, AllClassroomsActivity.class);
-                        LoginView.this.startActivity(startUserActivity);
-                        break;
-                    case LoginViewModel.LOGIN_ADMIN:
-                        Intent startAdminActivity = new Intent(LoginView.this, AllUsersActivity.class);
-                        LoginView.this.startActivity(startAdminActivity);
-                        break;
-                    case LoginViewModel.DENIED:
-                        Toast.makeText(getApplicationContext(), "DENIED", Toast.LENGTH_SHORT).show();
-                        break;
+                Account response = loginViewModel.checkLogin(String.valueOf(username.getText()), String.valueOf(password.getText()));
+                if (response == null) {
+                    Toast.makeText(getApplicationContext(), "DENIED", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-
+                if (response.isAdmin()) {
+                    Intent startAdminActivity = new Intent(LoginView.this, AllUsersActivity.class);
+                    startAdminActivity.putExtra("adminAccount", response);
+                    LoginView.this.startActivity(startAdminActivity);
+                }
+                if (!response.isAdmin()) {
+                    Intent startUserActivity = new Intent(LoginView.this, AllClassroomsActivity.class);
+                    startUserActivity.putExtra("userAccount", response);
+                    LoginView.this.startActivity(startUserActivity);
+                }
 
             }
         });

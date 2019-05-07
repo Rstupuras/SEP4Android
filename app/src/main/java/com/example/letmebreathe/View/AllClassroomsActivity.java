@@ -18,6 +18,7 @@ import android.view.MenuItem;
 
 import com.example.letmebreathe.R;
 import com.example.letmebreathe.adapters.ClassroomRecyclerAdapter;
+import com.example.letmebreathe.models.Account;
 import com.example.letmebreathe.models.EnvironmentalData;
 import com.example.letmebreathe.viewModels.AllClassroomsViewModel;
 
@@ -31,18 +32,14 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
     private AllClassroomsViewModel allClassroomsViewModel;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
+    private Account userAcount;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_allclassrooms);
 
-//        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(myToolbar);
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_user);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, myToolbar, R.string.open,R.string.close);
-//        drawer.addDrawerListener(toggle);
-//        toggle.syncState();
 
         configureToolbar();
 
@@ -60,7 +57,9 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
         });
 
         initRecyclerView();
-
+        Intent loginIntent = getIntent();
+        Bundle data = loginIntent.getExtras();
+        userAcount = (Account) data.getSerializable("userAccount");
     }
 
     private void initRecyclerView() {
@@ -101,6 +100,7 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
                 break;
             case R.id.drawerTeacherEditAccount:
                 Intent editAccountsIntent = new Intent(AllClassroomsActivity.this, TeacherEditAccountActivity.class);
+                editAccountsIntent.putExtra("loggedAccount", userAcount);
                 startActivity(editAccountsIntent);
                 break;
             case R.id.drawerSettings:

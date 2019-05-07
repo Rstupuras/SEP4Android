@@ -34,5 +34,11 @@ public class AccountRepository {
 
     }
 
+    public void updateAccount(Account account)
+    {
+        data.updateAccount(account);
+    }
+
+
 
 }
