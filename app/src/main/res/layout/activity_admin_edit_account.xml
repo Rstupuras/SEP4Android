@@ -29,7 +29,6 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/brown"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -45,7 +44,8 @@
                         android:id="@+id/toolbar_admin_edit"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
-                        android:background="@color/green"
+                        app:titleTextColor="@android:color/white"
+                        android:theme="@style/AppTheme"
 
                         android:minHeight="?attr/actionBarSize" />
                 </android.support.design.widget.AppBarLayout>
@@ -71,7 +71,8 @@
                     android:layout_marginBottom="10dp"
                     android:hint="@string/username"
                     android:text="@{data.username}"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:backgroundTint="@color/lightblue"/>
 
                 <EditText
                     android:id="@+id/editPassword"
@@ -81,7 +82,8 @@
                     android:layout_marginBottom="10dp"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:backgroundTint="@color/lightblue"/>
 
 
                 <EditText
@@ -91,7 +93,8 @@
                     android:layout_gravity="center"
                     android:hint="@string/confirm_password"
                     android:inputType="textPassword"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:backgroundTint="@color/lightblue"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -105,13 +108,15 @@
                         android:layout_width="150dp"
                         android:layout_height="50dp"
                         android:layout_marginEnd="50dp"
-                        android:text="@string/delete_account" />
+                        android:text="@string/delete_account"
+                        android:background="@color/lightblue"/>
 
                     <Button
                         android:id="@+id/saveAccountButton"
                         android:layout_width="150dp"
                         android:layout_height="50dp"
-                        android:text="@string/save" />
+                        android:text="@string/save"
+                        android:background="@color/lightblue"/>
                 </LinearLayout>
 
 

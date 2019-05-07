@@ -29,7 +29,8 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:hint="@string/username"
-        android:inputType="text" />
+        android:inputType="text"
+        android:backgroundTint="@color/lightblue"/>
 
     <EditText
         android:id="@+id/password"
@@ -38,8 +39,8 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:hint="@string/password"
-
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:backgroundTint="@color/lightblue"/>
 
 
     <Button
@@ -47,7 +48,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/login"/>
+        android:text="@string/login"
+        android:background="@color/lightblue"/>
 
 
 
