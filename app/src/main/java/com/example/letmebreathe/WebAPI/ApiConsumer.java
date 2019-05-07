@@ -19,7 +19,8 @@ public class ApiConsumer {
     private static ApiConsumer instance;
     private Retrofit retrofit;
     private API api;
-
+    ArrayList<Account> accountsToReturn;
+    private  ArrayList<Account> accounts = new ArrayList<>();
     public static ApiConsumer getInstance() {
         if (instance == null) {
             instance = new ApiConsumer();
@@ -30,31 +31,27 @@ public class ApiConsumer {
     public ApiConsumer() {
         retrofit = new Retrofit.Builder().baseUrl("https://sep4dataapi.azurewebsites.net/api/").addConverterFactory(GsonConverterFactory.create()).build();
         api = retrofit.create(API.class);
+
     }
 
     public ArrayList<Account> getAccounts() {
 
-
-        final ArrayList<Account> accountsToReturn = new ArrayList<>();
-        Call<List<Account>> call = api.getAccounts();
-
-        call.enqueue(new Callback<List<Account>>() {
-
+        final Call<ArrayList<Account>> call = api.getAccounts();
+        call.enqueue(new Callback<ArrayList<Account>>() {
             @Override
-            public void onResponse(Call<List<Account>> call, Response<List<Account>> response) {
-
-                List<Account> accountsList = new ArrayList<>();
-                accountsList = response.body();
-                accountsToReturn.addAll(accountsList);
-
+            public void onResponse(Call<ArrayList<Account>> call, Response<ArrayList<Account>> response) {
+                accounts.clear();
+                ArrayList<Account> accounts1 = new ArrayList<>();
+                accounts1 = response.body();
+                accounts.addAll(accounts1);
             }
 
             @Override
-            public void onFailure(Call<List<Account>> call, Throwable t) {
-                System.out.println(t.getCause());
+            public void onFailure(Call<ArrayList<Account>> call, Throwable t) {
+
             }
         });
-        return accountsToReturn;
+        return accounts;
 
     }
 

@@ -60,10 +60,11 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
         });
 
         initRecyclerView();
-
+        System.out.println(allAccountsViewModel.getAccountList().getValue().size());
     }
 
     private void initRecyclerView() {
+
         adapter = new AccountRecyclerAdapter(AllUsersActivity.this, (ArrayList<Account>) allAccountsViewModel.getAccountList().getValue(), this);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(AllUsersActivity.this);
         recyclerView.setLayoutManager(linearLayoutManager);
