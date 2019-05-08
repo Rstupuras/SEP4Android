@@ -32,6 +32,7 @@ public class CreateAccountActivity extends AppCompatActivity implements Navigati
     DrawerLayout drawerLayout;
     private Account newAccount;
     private Button saveButton;
+    private Account loggedAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +49,6 @@ public class CreateAccountActivity extends AppCompatActivity implements Navigati
         binding.setVariable(BR.data, createAccountViewModel);
 
 
-//
-//
-//        saveButton = findViewById(R.id.saveCreatedAccountButton);
-//        saveButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                createAccountViewModel.addAccount();
-//            }
-//        });
-//
-
-
-
         configureToolbar();
 
         createAccountViewModel = ViewModelProviders.of(this).get(CreateAccountViewModel.class);
@@ -69,8 +57,7 @@ public class CreateAccountActivity extends AppCompatActivity implements Navigati
         createAccountViewModel.updated.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {
-                if(aBoolean==null)
-                {
+                if (aBoolean == null) {
                     return;
                 }
                 if (aBoolean) {
@@ -80,18 +67,11 @@ public class CreateAccountActivity extends AppCompatActivity implements Navigati
                 }
             }
         });
-    }
+        Intent previousIntent = getIntent();
+        Bundle data = previousIntent.getExtras();
 
+        loggedAccount = (Account) data.getSerializable("loggedAdminAccount");
 
-
-
-    public void getAccountTest(){
-
-        ActivityCreateAccountBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_create_account);
-        binding.setLifecycleOwner(CreateAccountActivity.this);
-        binding.setVariable(BR.data, createAccountViewModel);
-        newAccount = (Account) binding.getData().getAccount();
-        createAccountViewModel.setAccount(newAccount);
     }
 
 
@@ -111,25 +91,25 @@ public class CreateAccountActivity extends AppCompatActivity implements Navigati
     }
 
 
-
-
-        @Override
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-            switch (menuItem.getItemId()) {
-                case R.id.drawerAllUsers:
-                    Intent allClassroomsIntent = new Intent(CreateAccountActivity.this, AllUsersActivity.class);
-                    startActivity(allClassroomsIntent);
-                    break;
-                case R.id.drawerAdminEditAccount:
-                    Intent editAdminAccountsIntent = new Intent(CreateAccountActivity.this, AdminEditAccountActivity.class);
-                    startActivity(editAdminAccountsIntent);
-                    break;
-                case R.id.drawerCreateAccount:
-                    break;
-            }
-            DrawerLayout drawer = findViewById(R.id.drawer_layout_create_account);
-            drawer.closeDrawer(GravityCompat.START);
-            return true;
+        switch (menuItem.getItemId()) {
+            case R.id.drawerAllUsers:
+                Intent allClassroomsIntent = new Intent(CreateAccountActivity.this, AllUsersActivity.class);
+                allClassroomsIntent.putExtra("loggedAdminAccount", loggedAccount);
+                startActivity(allClassroomsIntent);
+                break;
+            case R.id.drawerAdminEditAccount:
+                Intent editAdminAccountsIntent = new Intent(CreateAccountActivity.this, AdminEditAccountActivity.class);
+                editAdminAccountsIntent.putExtra("loggedAdminAccount", loggedAccount);
+                startActivity(editAdminAccountsIntent);
+                break;
+            case R.id.drawerCreateAccount:
+                break;
         }
+        DrawerLayout drawer = findViewById(R.id.drawer_layout_create_account);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
+}
 

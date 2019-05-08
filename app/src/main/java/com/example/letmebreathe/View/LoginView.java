@@ -54,7 +54,7 @@ public class LoginView extends AppCompatActivity {
                 }
                 if (response.isAdmin()) {
                     Intent startAdminActivity = new Intent(LoginView.this, AllUsersActivity.class);
-                    startAdminActivity.putExtra("adminAccount", response);
+                    startAdminActivity.putExtra("loggedAdminAccount", response);
                     LoginView.this.startActivity(startAdminActivity);
                 }
                 if (!response.isAdmin()) {

@@ -10,7 +10,7 @@ public class Account implements Serializable {
     private String userName;
     private String password;
     private boolean isAdmin;
-
+    private String passwordToConfirm;
 
     public Account() {
     }
@@ -40,11 +40,12 @@ public class Account implements Serializable {
         return password;
     }
 
-    public String getPasswordToConfirm() { return password; }
+    public String getPasswordToConfirm() {
+        return passwordToConfirm;
+    }
 
-    public void setPasswordToConfirm(String password)
-    {
-
+    public void setPasswordToConfirm(String passwordToConfirm) {
+        this.passwordToConfirm = passwordToConfirm;
     }
 
     public void setPassword(String password) {

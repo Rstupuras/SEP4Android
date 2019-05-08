@@ -39,8 +39,8 @@ public class CreateAccountViewModel extends ViewModel {
 
     public void addAccount() {
 
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        System.out.println(account.getPasswordToConfirm());
+
+
         if (account.getPassword().equalsIgnoreCase(account.getPasswordToConfirm())) {
             repo.addAccount(account);
             updated.setValue(true);

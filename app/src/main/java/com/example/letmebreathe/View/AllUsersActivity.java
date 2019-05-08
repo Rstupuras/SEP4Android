@@ -31,18 +31,12 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
     private AllAccountsViewModel allAccountsViewModel;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
+    private Account loggedAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_users);
-
-//        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(myToolbar);
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_user);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, myToolbar, R.string.open,R.string.close);
-//        drawer.addDrawerListener(toggle);
-//        toggle.syncState();
 
         configureToolbar();
 
@@ -60,7 +54,11 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
         });
 
         initRecyclerView();
-        System.out.println(allAccountsViewModel.getAccountList().getValue().size());
+
+        Intent loginIntent = getIntent();
+        Bundle data = loginIntent.getExtras();
+        loggedAccount = (Account) data.getSerializable("loggedAdminAccount");
+
     }
 
     private void initRecyclerView() {
@@ -74,13 +72,14 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
-        Intent intent = new Intent(AllUsersActivity.this, TeacherEditAccountActivity.class);
+        Intent intent = new Intent(AllUsersActivity.this, AdminEditTeacherAccountActivity.class);
         intent.putExtra("account", clickedItemIndex);
+        intent.putExtra("loggedAdminAccount", loggedAccount);
         startActivity(intent);
     }
 
     public void configureToolbar() {
-//        setContentView(R.layout.drawer_layout_user);
+
         toolbar = findViewById(R.id.toolbar_all_users);
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer_layout_all_users);
@@ -91,7 +90,7 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
 
         NavigationView navigationView = findViewById(R.id.navigation_all_users);
         navigationView.setNavigationItemSelectedListener(this);
-        //setContentView(R.layout.activity_allclassrooms);
+
     }
 
     @Override
@@ -101,10 +100,12 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
                 break;
             case R.id.drawerAdminEditAccount:
                 Intent editAdminAccountsIntent = new Intent(AllUsersActivity.this, AdminEditAccountActivity.class);
+                editAdminAccountsIntent.putExtra("loggedAdminAccount", loggedAccount);
                 startActivity(editAdminAccountsIntent);
                 break;
             case R.id.drawerCreateAccount:
                 Intent createAccountIntent = new Intent(AllUsersActivity.this, CreateAccountActivity.class);
+                createAccountIntent.putExtra("loggedAdminAccount", loggedAccount);
                 startActivity(createAccountIntent);
                 break;
 

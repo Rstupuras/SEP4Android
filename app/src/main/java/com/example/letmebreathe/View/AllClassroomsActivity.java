@@ -74,7 +74,7 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
     public void onListItemClick(int clickedItemIndex) {
         Intent intent = new Intent(AllClassroomsActivity.this, CheckEnvironmentalDataActivity.class);
         intent.putExtra("environmentalData", clickedItemIndex);
-        System.out.println(clickedItemIndex);
+
         startActivity(intent);
     }
 
