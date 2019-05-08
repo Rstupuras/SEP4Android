@@ -80,7 +80,10 @@ public class CheckEnvironmentalDataActivity extends AllClassroomsActivity implem
                 Intent settingsIntent = new Intent(CheckEnvironmentalDataActivity.this, SettingsActivity.class);
                 startActivity(settingsIntent);
                 return true;
-
+            case R.id.drawerLogOut:
+                Intent intent = new Intent(getApplicationContext(), LoginView.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -107,6 +107,10 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
                 Intent settingsIntent = new Intent(AllClassroomsActivity.this, SettingsActivity.class);
                 startActivity(settingsIntent);
                 return true;
+            case R.id.drawerLogOut:
+                Intent intent = new Intent(getApplicationContext(), LoginView.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
 
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

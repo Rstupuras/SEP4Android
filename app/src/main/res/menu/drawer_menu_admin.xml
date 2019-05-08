@@ -18,6 +18,10 @@
                 android:id="@+id/drawerAdminEditAccount"
                 android:title="@string/edit_account" />
 
+            <item
+                android:id="@+id/drawerLogOut"
+                android:title="@string/logout" />
+
 
         </menu>
     </item>

@@ -106,6 +106,10 @@ public class CreateAccountActivity extends AppCompatActivity implements Navigati
                 break;
             case R.id.drawerCreateAccount:
                 break;
+            case R.id.drawerLogOut:
+                Intent intent = new Intent(getApplicationContext(), LoginView.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout_create_account);
         drawer.closeDrawer(GravityCompat.START);

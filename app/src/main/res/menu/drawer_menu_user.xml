@@ -17,6 +17,11 @@
                 android:id="@+id/drawerSettings"
                 android:title="@string/settings" />
 
+            <item
+                android:id="@+id/drawerLogOut"
+                android:title="@string/logout" />
+
+
         </menu>
     </item>
 </menu>
