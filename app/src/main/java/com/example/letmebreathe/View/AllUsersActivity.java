@@ -78,7 +78,7 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
     public void onListItemClick(int clickedItemIndex) {
         Intent intent = new Intent(AllUsersActivity.this, AdminEditTeacherAccountActivity.class);
         intent.putExtra("account", clickedItemIndex);
-        intent.putExtra("loggedAd0minAccount", loggedAccount);
+        intent.putExtra("loggedAdminAccount", loggedAccount);
         startActivityForResult(intent, 0);
     }
 

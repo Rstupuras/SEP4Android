@@ -16,7 +16,6 @@
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".View.LoginView">
- n
 
     <TextView
         android:layout_width="wrap_content"
