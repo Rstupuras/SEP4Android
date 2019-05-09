@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <ListPreference
-        android:defaultValue="Celsius"
-        android:entries="@array/temperatureValues"
-        android:entryValues="@array/temperatureValues"
+        android:defaultValue="@string/celsius"
+        android:entries="@array/temperatureEntries"
+        android:entryValues="@array/temperatureEntries"
         android:key="temperature_preference"
         android:summary="%s"
         android:title="Temperature" />

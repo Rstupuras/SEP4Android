@@ -3,8 +3,10 @@ package com.example.letmebreathe.View;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -63,6 +65,7 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
         Intent loginIntent = getIntent();
         Bundle data = loginIntent.getExtras();
         userAccount = (Account) data.getSerializable("userAccount");
+
     }
 
     private void initRecyclerView() {

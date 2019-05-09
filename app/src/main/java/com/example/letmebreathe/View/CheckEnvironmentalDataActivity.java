@@ -2,9 +2,11 @@ package com.example.letmebreathe.View;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -52,7 +54,16 @@ public class CheckEnvironmentalDataActivity extends AppCompatActivity implements
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         int id = extras.getInt("environmentalData");
-        checkEnvironmentalDataViewModel.setData(id);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String preferedTemperature = sharedPref.getString("temperature_preference", "Celsius");
+
+        if (preferedTemperature.equals("Celsius")) {
+            checkEnvironmentalDataViewModel.setData(id);
+        }
+        if (preferedTemperature.equals("Fahrenheit")){
+            checkEnvironmentalDataViewModel.setDataFahrenheit(id);
+        }
         configureToolbar();
         Intent loginIntent = getIntent();
         Bundle data = loginIntent.getExtras();
