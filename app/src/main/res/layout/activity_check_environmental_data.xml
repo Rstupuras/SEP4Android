@@ -52,11 +52,11 @@
                             android:id="@+id/toolbar"
                             android:layout_width="match_parent"
                             android:layout_height="?attr/actionBarSize"
+                            android:minHeight="?attr/actionBarSize"
                             android:theme="@style/AppTheme"
-                            app:titleTextColor="@android:color/white"
 
 
-                            android:minHeight="?attr/actionBarSize" />
+                            app:titleTextColor="@android:color/white" />
                     </android.support.design.widget.AppBarLayout>
                 </RelativeLayout>
 
@@ -68,6 +68,7 @@
                     android:text="@string/classroom"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
+
 
                 <TextView
                     android:layout_width="match_parent"
@@ -129,8 +130,8 @@
                         android:textColor="@android:color/black"
                         android:textSize="40sp"
                         android:textStyle="bold" />
-                </LinearLayout>
 
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>

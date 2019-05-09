@@ -3,7 +3,9 @@ package com.example.letmebreathe.WebAPI;
 import android.os.AsyncTask;
 
 import com.example.letmebreathe.Database.MockData;
-import com.example.letmebreathe.EnvironmentalDataTask;
+
+
+import com.example.letmebreathe.View.CheckEnvironmentalDataActivity;
 import com.example.letmebreathe.models.Account;
 import com.example.letmebreathe.models.EnvironmentalData;
 
@@ -29,7 +31,8 @@ public class ApiConsumer {
     private API api;
     ArrayList<Account> accountsToReturn;
     private ArrayList<Account> accounts = new ArrayList<>();
-    private ArrayList<EnvironmentalData> environmentalData = new ArrayList<>();;
+    private ArrayList<EnvironmentalData> environmentalData = new ArrayList<>();
+    ;
 
     public static ApiConsumer getInstance() {
         if (instance == null) {
@@ -117,27 +120,6 @@ public class ApiConsumer {
         });
     }
 
-//    public ArrayList<EnvironmentalData> getEnvironmentalDataStored() {
-//        final Call<ArrayList<EnvironmentalData>> call = api.getEnvironmentalDataStored();
-//        call.enqueue(new Callback<ArrayList<EnvironmentalData>>() {
-//            @Override
-//            public void onResponse(Call<ArrayList<EnvironmentalData>> call, Response<ArrayList<EnvironmentalData>> response) {
-//                if (response.isSuccessful()) {
-//                    environmentalData.clear();
-//                    ArrayList<EnvironmentalData> environmentalDataFromAPI = new ArrayList<>();
-//                    environmentalDataFromAPI = response.body();
-//                    environmentalData.addAll(environmentalDataFromAPI);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ArrayList<EnvironmentalData>> call, Throwable t) {
-//
-//            }
-//        });
-//
-//        return environmentalData;
-//    }
 
     public ArrayList<EnvironmentalData> getEnvironmentalDataStored() {
         if (environmentalData.isEmpty()) {
@@ -164,11 +146,31 @@ public class ApiConsumer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        System.out.println("aaaaaa");
         return environmentalData;
     }
 
+    private class EnvironmentalDataTask extends AsyncTask<Void, Void, ArrayList<EnvironmentalData>> {
+        private Retrofit retrofit;
+        private API api;
 
+
+        @Override
+        protected ArrayList<EnvironmentalData> doInBackground(Void... voids) {
+            retrofit = new Retrofit.Builder().baseUrl("https://sep4dataapi.azurewebsites.net/api/").addConverterFactory(GsonConverterFactory.create()).build();
+            api = retrofit.create(API.class);
+            final Call<ArrayList<EnvironmentalData>> call = api.getEnvironmentalData();
+            try {
+
+                return call.execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+
+    }
 
 }
 

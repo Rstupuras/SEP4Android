@@ -21,7 +21,7 @@ public class EnvironmentalDataRepository {
         return instance;
     }
 
-    //pretend to get data from api
+
     public MutableLiveData<List<EnvironmentalData>> getEnvironmentalDataStored() {
         setEnvironmentalDataStored();
         MutableLiveData<List<EnvironmentalData>> data = new MutableLiveData<>();
@@ -30,7 +30,6 @@ public class EnvironmentalDataRepository {
     }
 
     public void setEnvironmentalDataStored() {
-
 
         environmentalDataStored = (ArrayList<EnvironmentalData>) data.getEnvironmentalDataStored();
     }
@@ -48,5 +47,5 @@ public class EnvironmentalDataRepository {
         this.environmentalDataFromAPI = (ArrayList<EnvironmentalData>) data.getEnvironmentalFromAPI();
     }
 
- 
+
 }

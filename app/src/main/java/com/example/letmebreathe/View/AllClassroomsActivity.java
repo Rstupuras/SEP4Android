@@ -34,6 +34,7 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     private Account userAccount;
+    private boolean called = false;
 
     @Override
 
@@ -49,6 +50,7 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
         allClassroomsViewModel = ViewModelProviders.of(this).get(AllClassroomsViewModel.class);
 
         allClassroomsViewModel.init();
+
 
         allClassroomsViewModel.getEnvironmentalDataList().observe(this, new Observer<List<EnvironmentalData>>() {
             @Override
