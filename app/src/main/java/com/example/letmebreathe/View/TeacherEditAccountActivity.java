@@ -32,7 +32,7 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
     private EditAccountViewModel editAccountViewModel;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
-    private Account loggedAccount;
+    private Account userAccount;
 
 
 //    private String passwordToConfirm;
@@ -52,8 +52,8 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
         binding.setVariable(BR.data, editAccountViewModel);
         Intent allClassroomsIntent = getIntent();
         Bundle data = allClassroomsIntent.getExtras();
-        loggedAccount = (Account) data.getSerializable("loggedAccount");
-        editAccountViewModel.setAccount(loggedAccount.getUserName());
+        userAccount = (Account) data.getSerializable("userAccount");
+        editAccountViewModel.setAccount(userAccount.getUserName());
         editAccountViewModel.updated.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {
@@ -61,9 +61,9 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
                     return;
                 }
                 if (aBoolean) {
-                    Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Passwords do not match or password too short", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Passwords either do not match or are too short", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -134,6 +134,7 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
         switch (menuItem.getItemId()) {
             case R.id.drawerAllClassrooms:
                 Intent allClassroomsIntent = new Intent(TeacherEditAccountActivity.this, AllClassroomsActivity.class);
+                allClassroomsIntent.putExtra("userAccount", userAccount);
                 startActivity(allClassroomsIntent);
                 break;
             case R.id.drawerTeacherEditAccount:
@@ -142,6 +143,10 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
                 Intent settingsIntent = new Intent(TeacherEditAccountActivity.this, SettingsActivity.class);
                 startActivity(settingsIntent);
                 return true;
+            case R.id.drawerLogOut:
+                Intent intent = new Intent(getApplicationContext(), LoginView.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
 
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout_teacher_edit);

@@ -61,9 +61,9 @@ public class CreateAccountActivity extends AppCompatActivity implements Navigati
                     return;
                 }
                 if (aBoolean) {
-                    Toast.makeText(getApplicationContext(), "Created successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Created successfully", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Passwords either do not match or are too short", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -106,6 +106,10 @@ public class CreateAccountActivity extends AppCompatActivity implements Navigati
                 break;
             case R.id.drawerCreateAccount:
                 break;
+            case R.id.drawerLogOut:
+                Intent intent = new Intent(getApplicationContext(), LoginView.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout_create_account);
         drawer.closeDrawer(GravityCompat.START);

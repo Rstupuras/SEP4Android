@@ -28,6 +28,7 @@ public class CheckEnvironmentalDataActivity extends AllClassroomsActivity implem
 
     private ArrayList<EnvironmentalData> data;
 
+    private Account userAccount;
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
@@ -45,6 +46,10 @@ public class CheckEnvironmentalDataActivity extends AllClassroomsActivity implem
         int id = extras.getInt("environmentalData");
         checkEnvironmentalDataViewModel.setData(id);
         configureToolbar();
+
+        Intent loginIntent = getIntent();
+        Bundle data = loginIntent.getExtras();
+        userAccount = (Account) data.getSerializable("userAccount");
 
     }
 
@@ -70,17 +75,22 @@ public class CheckEnvironmentalDataActivity extends AllClassroomsActivity implem
         switch (menuItem.getItemId()) {
             case R.id.drawerAllClassrooms:
                 Intent allClassroomsIntent = new Intent(CheckEnvironmentalDataActivity.this, AllClassroomsActivity.class);
+                allClassroomsIntent.putExtra("userAccount", userAccount);
                 startActivity(allClassroomsIntent);
                 break;
             case R.id.drawerTeacherEditAccount:
                 Intent editAccountsIntent = new Intent(CheckEnvironmentalDataActivity.this, TeacherEditAccountActivity.class);
+                editAccountsIntent.putExtra("userAccount", userAccount);
                 startActivity(editAccountsIntent);
                 break;
             case R.id.drawerSettings:
                 Intent settingsIntent = new Intent(CheckEnvironmentalDataActivity.this, SettingsActivity.class);
                 startActivity(settingsIntent);
                 return true;
-
+            case R.id.drawerLogOut:
+                Intent intent = new Intent(getApplicationContext(), LoginView.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

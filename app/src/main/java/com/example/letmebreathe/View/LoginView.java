@@ -49,7 +49,7 @@ public class LoginView extends AppCompatActivity {
             public void onClick(View v) {
                 Account response = loginViewModel.checkLogin(String.valueOf(username.getText()), String.valueOf(password.getText()));
                 if (response == null) {
-                    Toast.makeText(getApplicationContext(), "DENIED", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "DENIED", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (response.isAdmin()) {

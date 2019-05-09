@@ -112,6 +112,10 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
                 createAccountIntent.putExtra("loggedAdminAccount", loggedAccount);
                 startActivity(createAccountIntent);
                 break;
+            case R.id.drawerLogOut:
+                Intent intent = new Intent(getApplicationContext(), LoginView.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
 
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout_all_users);

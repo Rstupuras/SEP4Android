@@ -59,9 +59,9 @@ public class AdminEditTeacherAccountActivity extends AppCompatActivity implement
                     return;
                 }
                 if (aBoolean) {
-                    Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Passwords do not match or password too short", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Passwords do not match or password too short", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -149,12 +149,15 @@ public class AdminEditTeacherAccountActivity extends AppCompatActivity implement
                 editAdminAccountsIntent.putExtra("loggedAdminAccount", loggedAccount);
                 startActivity(editAdminAccountsIntent);
                 break;
-
             case R.id.drawerCreateAccount:
                 Intent createAccountIntent = new Intent(AdminEditTeacherAccountActivity.this, CreateAccountActivity.class);
                 createAccountIntent.putExtra("loggedAdminAccount", loggedAccount);
                 startActivity(createAccountIntent);
                 break;
+            case R.id.drawerLogOut:
+                Intent intent = new Intent(getApplicationContext(), LoginView.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout_admin_edit);
         drawer.closeDrawer(GravityCompat.START);
