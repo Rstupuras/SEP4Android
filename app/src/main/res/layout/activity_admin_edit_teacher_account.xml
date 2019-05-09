@@ -42,7 +42,6 @@
 
                     <android.support.design.widget.AppBarLayout
                         android:layout_width="match_parent"
-<<<<<<< HEAD
                         android:layout_height="wrap_content">
 
                         <android.support.v7.widget.Toolbar
@@ -65,14 +64,8 @@
 
                     android:orientation="vertical"
                     tools:context=".View.TeacherEditAccountActivity">
-=======
-                        android:layout_height="?attr/actionBarSize"
-                        android:minHeight="?attr/actionBarSize"
-                        android:theme="@style/AppTheme"
-                        app:titleTextColor="@android:color/white" />
-                </android.support.design.widget.AppBarLayout>
-            </RelativeLayout>
->>>>>>> 8b6c3a246baf196441fe5fd51b4709f4cd0a93b7
+
+
 
 
                     <TextView
