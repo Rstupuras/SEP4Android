@@ -2,7 +2,7 @@ package com.example.letmebreathe.Repository;
 
 import android.arch.lifecycle.MutableLiveData;
 
-import com.example.letmebreathe.Database.MockData;
+import com.example.letmebreathe.WebAPI.ApiConsumer;
 import com.example.letmebreathe.models.EnvironmentalData;
 
 import java.util.ArrayList;
@@ -10,8 +10,9 @@ import java.util.List;
 
 public class EnvironmentalDataRepository {
     private static EnvironmentalDataRepository instance;
-    private ArrayList<EnvironmentalData> environmentalData = new ArrayList<>();
-    private MockData data = MockData.getInstance();
+    private ArrayList<EnvironmentalData> environmentalDataStored = new ArrayList<>();
+    private ArrayList<EnvironmentalData> environmentalDataFromAPI = new ArrayList<>();
+    private ApiConsumer data = ApiConsumer.getInstance();
 
     public static EnvironmentalDataRepository getInstance() {
         if (instance == null) {
@@ -21,15 +22,31 @@ public class EnvironmentalDataRepository {
     }
 
     //pretend to get data from api
-    public MutableLiveData<List<EnvironmentalData>> getEnvironmentalData() {
-        setEnvironmentalData();
+    public MutableLiveData<List<EnvironmentalData>> getEnvironmentalDataStored() {
+        setEnvironmentalDataStored();
         MutableLiveData<List<EnvironmentalData>> data = new MutableLiveData<>();
-        data.setValue(environmentalData);
+        data.setValue(environmentalDataStored);
         return data;
     }
 
-    public void setEnvironmentalData() {
-        environmentalData = data.getData();
+    public void setEnvironmentalDataStored() {
+
+
+        environmentalDataStored = (ArrayList<EnvironmentalData>) data.getEnvironmentalDataStored();
     }
 
+    public MutableLiveData<List<EnvironmentalData>> getEnvironmentalDataFromAPI() {
+        setEnvironmentalDataFromAPI();
+        MutableLiveData<List<EnvironmentalData>> data = new MutableLiveData<>();
+        data.setValue(environmentalDataFromAPI);
+        return data;
+
+    }
+
+
+    public void setEnvironmentalDataFromAPI() {
+        this.environmentalDataFromAPI = (ArrayList<EnvironmentalData>) data.getEnvironmentalFromAPI();
+    }
+
+ 
 }

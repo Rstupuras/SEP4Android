@@ -7,7 +7,6 @@ import android.arch.lifecycle.ViewModel;
 import com.example.letmebreathe.Repository.EnvironmentalDataRepository;
 import com.example.letmebreathe.models.EnvironmentalData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AllClassroomsViewModel extends ViewModel {
@@ -19,7 +18,7 @@ public class AllClassroomsViewModel extends ViewModel {
             return;
         }
         repo = EnvironmentalDataRepository.getInstance();
-        environmentalDataList = repo.getEnvironmentalData();
+        environmentalDataList = repo.getEnvironmentalDataFromAPI();
     }
 
     public LiveData<List<EnvironmentalData>> getEnvironmentalDataList(){

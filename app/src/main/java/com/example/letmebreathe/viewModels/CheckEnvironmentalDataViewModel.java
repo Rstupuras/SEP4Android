@@ -24,7 +24,7 @@ public class CheckEnvironmentalDataViewModel extends ViewModel {
             return;
         }
         environmentalDataRepository = EnvironmentalDataRepository.getInstance();
-        environmentalData = environmentalDataRepository.getEnvironmentalData();
+        environmentalData = environmentalDataRepository.getEnvironmentalDataStored();
 
     }
 

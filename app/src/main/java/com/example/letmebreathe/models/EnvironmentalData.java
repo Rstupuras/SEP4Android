@@ -1,5 +1,8 @@
 package com.example.letmebreathe.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.text.DecimalFormat;
 
@@ -7,11 +10,16 @@ import static java.lang.Math.round;
 
 public class EnvironmentalData implements Serializable {
 
-
+    @SerializedName("location")
+    @Expose
     private String location;
+    @SerializedName("co2")
     private double CO2;
+    @SerializedName("temperature")
     private double temperature;
+    @SerializedName("time")
     private String time;
+
 
     private static DecimalFormat df2 = new DecimalFormat(".##");
 

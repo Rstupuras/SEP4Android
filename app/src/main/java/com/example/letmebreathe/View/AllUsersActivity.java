@@ -60,7 +60,7 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
         Intent loginIntent = getIntent();
         Bundle data = loginIntent.getExtras();
         loggedAccount = (Account) data.getSerializable("loggedAdminAccount");
-        System.out.println(adapter.getItemCount());
+
 
     }
 
@@ -126,14 +126,14 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        System.out.println(adapter.getItemCount());
+
         if (data != null) {
             if (data.getExtras().getBoolean("deleted")) {
-                System.out.println("position" + data.getExtras().getInt("position"));
+
                 adapter.removeItem(data.getExtras().getInt("position"));
                 adapter.notifyItemRemoved(data.getExtras().getInt("position"));
                 adapter.notifyDataSetChanged();
-                System.out.println(adapter.getItemCount());
+
             }
         }
     }

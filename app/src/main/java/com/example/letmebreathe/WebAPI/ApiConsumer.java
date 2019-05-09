@@ -1,11 +1,19 @@
 package com.example.letmebreathe.WebAPI;
 
-import com.example.letmebreathe.Database.MockData;
-import com.example.letmebreathe.models.Account;
+import android.os.AsyncTask;
 
+import com.example.letmebreathe.Database.MockData;
+import com.example.letmebreathe.EnvironmentalDataTask;
+import com.example.letmebreathe.models.Account;
+import com.example.letmebreathe.models.EnvironmentalData;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import javax.xml.transform.Result;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,6 +29,7 @@ public class ApiConsumer {
     private API api;
     ArrayList<Account> accountsToReturn;
     private ArrayList<Account> accounts = new ArrayList<>();
+    private ArrayList<EnvironmentalData> environmentalData = new ArrayList<>();;
 
     public static ApiConsumer getInstance() {
         if (instance == null) {
@@ -34,6 +43,7 @@ public class ApiConsumer {
         api = retrofit.create(API.class);
 
     }
+
 
     public ArrayList<Account> getAccounts() {
 
@@ -107,4 +117,60 @@ public class ApiConsumer {
         });
     }
 
+//    public ArrayList<EnvironmentalData> getEnvironmentalDataStored() {
+//        final Call<ArrayList<EnvironmentalData>> call = api.getEnvironmentalDataStored();
+//        call.enqueue(new Callback<ArrayList<EnvironmentalData>>() {
+//            @Override
+//            public void onResponse(Call<ArrayList<EnvironmentalData>> call, Response<ArrayList<EnvironmentalData>> response) {
+//                if (response.isSuccessful()) {
+//                    environmentalData.clear();
+//                    ArrayList<EnvironmentalData> environmentalDataFromAPI = new ArrayList<>();
+//                    environmentalDataFromAPI = response.body();
+//                    environmentalData.addAll(environmentalDataFromAPI);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ArrayList<EnvironmentalData>> call, Throwable t) {
+//
+//            }
+//        });
+//
+//        return environmentalData;
+//    }
+
+    public ArrayList<EnvironmentalData> getEnvironmentalDataStored() {
+        if (environmentalData.isEmpty()) {
+            EnvironmentalDataTask task = new EnvironmentalDataTask();
+            task.execute();
+            try {
+                environmentalData = task.get();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return environmentalData;
+    }
+
+    public ArrayList<EnvironmentalData> getEnvironmentalFromAPI() {
+        EnvironmentalDataTask task = new EnvironmentalDataTask();
+        task.execute();
+        try {
+            environmentalData = task.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return environmentalData;
+    }
+
+
+
 }
+
+
+
