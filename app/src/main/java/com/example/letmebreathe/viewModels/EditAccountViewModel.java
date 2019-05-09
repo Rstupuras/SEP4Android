@@ -27,7 +27,7 @@ public class EditAccountViewModel extends ViewModel {
         updated = new MutableLiveData<>();
         updated.setValue(null);
         showConfirmDeleteWindow = new MutableLiveData<>();
-        showConfirmDeleteWindow.setValue(null);
+        showConfirmDeleteWindow.setValue(false);
     }
 
     public LiveData<List<Account>> getAccountList() {

@@ -67,21 +67,6 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
                 }
             }
         });
-
-    }
-
-    public void configureToolbar() {
-
-        toolbar = findViewById(R.id.toolbar_teacher_edit);
-        setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.drawer_layout_teacher_edit);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle
-                (this, drawerLayout, toolbar, R.string.second, R.string.third);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.navigation_teacher_edit);
-        navigationView.setNavigationItemSelectedListener(this);
         editAccountViewModel.showConfirmDeleteWindow.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {
@@ -105,6 +90,12 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
 
                             editAccountViewModel.deleteAccount();
                             Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                          
+                            Intent intent = new Intent(TeacherEditAccountActivity.this, LoginView.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                    | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
                             finish();
                         }
                     });
@@ -127,6 +118,21 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
                 }
             }
         });
+    }
+
+    public void configureToolbar() {
+
+        toolbar = findViewById(R.id.toolbar_teacher_edit);
+        setSupportActionBar(toolbar);
+        drawerLayout = findViewById(R.id.drawer_layout_teacher_edit);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle
+                (this, drawerLayout, toolbar, R.string.second, R.string.third);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.navigation_teacher_edit);
+        navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
