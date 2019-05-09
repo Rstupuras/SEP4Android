@@ -2,8 +2,6 @@ package com.example.letmebreathe.WebAPI;
 
 import android.os.AsyncTask;
 
-import com.example.letmebreathe.Database.MockData;
-
 
 import com.example.letmebreathe.View.CheckEnvironmentalDataActivity;
 import com.example.letmebreathe.models.Account;
@@ -146,11 +144,11 @@ public class ApiConsumer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("aaaaaa");
+
         return environmentalData;
     }
 
-    private class EnvironmentalDataTask extends AsyncTask<Void, Void, ArrayList<EnvironmentalData>> {
+    public class EnvironmentalDataTask extends AsyncTask<Void, Void, ArrayList<EnvironmentalData>> {
         private Retrofit retrofit;
         private API api;
 

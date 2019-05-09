@@ -1,5 +1,6 @@
 package com.example.letmebreathe.View;
 
+import android.app.ProgressDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -10,6 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,8 @@ public class LoginView extends AppCompatActivity {
     private TextView textas;
     private Button loginButton;
     private LoginViewModel loginViewModel;
+    LinearLayout layout;
+    ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,8 @@ public class LoginView extends AppCompatActivity {
 
 
         loginButton = findViewById(R.id.loginButton);
-
+        layout = findViewById(R.id.spinnerContainer);
+        progress = findViewById(R.id.progressBar1);
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         loginViewModel.init();
         loginViewModel.getAccounts().observe(this, new Observer<List<Account>>() {
@@ -46,17 +52,24 @@ public class LoginView extends AppCompatActivity {
             }
         });
         loginButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+
+                layout.setVisibility(View.VISIBLE);
+                progress.setVisibility(View.VISIBLE);
                 Account response = loginViewModel.checkLogin(String.valueOf(username.getText()), String.valueOf(password.getText()));
                 if (response == null) {
+                    layout.setVisibility(View.GONE);
+                    progress.setVisibility(View.GONE);
                     Toast.makeText(getApplicationContext(), "DENIED", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (response.isAdmin()) {
                     Intent startAdminActivity = new Intent(LoginView.this, AllUsersActivity.class);
                     startAdminActivity.putExtra("loggedAdminAccount", response);
-                    LoginView.this.startActivity(startAdminActivity);
+                    LoginView.this.startActivityForResult(startAdminActivity, 0);
+
                 }
                 if (!response.isAdmin()) {
                     Intent startUserActivity = new Intent(LoginView.this, AllClassroomsActivity.class);
@@ -64,11 +77,17 @@ public class LoginView extends AppCompatActivity {
                     LoginView.this.startActivity(startUserActivity);
                 }
 
+
             }
         });
 
     }
 
 
-
+    @Override
+    protected void onResume() {
+        layout.setVisibility(View.GONE);
+        progress.setVisibility(View.GONE);
+        super.onResume();
+    }
 }
