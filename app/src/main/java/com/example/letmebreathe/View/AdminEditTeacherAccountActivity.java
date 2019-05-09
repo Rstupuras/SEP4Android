@@ -63,9 +63,9 @@ public class AdminEditTeacherAccountActivity extends AppCompatActivity implement
                     return;
                 }
                 if (aBoolean) {
-                    Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Passwords do not match or password too short", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Passwords do not match or password too short", Toast.LENGTH_LONG).show();
                 }
             }
         });

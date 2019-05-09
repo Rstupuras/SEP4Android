@@ -41,7 +41,7 @@ public class CreateAccountViewModel extends ViewModel {
 
 
 
-        if (account.getPassword().equalsIgnoreCase(account.getPasswordToConfirm())) {
+        if (account.getPassword().equalsIgnoreCase(account.getPasswordToConfirm()) && account.getPassword().length() > 5 && account.getPasswordToConfirm().length() > 5) {
             repo.addAccount(account);
             updated.setValue(true);
 

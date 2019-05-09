@@ -97,6 +97,14 @@
                     android:textAlignment="center"
                     android:backgroundTint="@color/lightblue"
                     android:text="@={data.account.passwordToConfirm}"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:text="@string/admin"
+                    android:checked="@={data.account.admin}"
+                    android:textSize="20sp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -59,9 +59,9 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
                    return;
                }
                 if (aBoolean) {
-                    Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Passwords do not match or password too short", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Passwords either do not match or are too short", Toast.LENGTH_LONG).show();
                 }
             }
         });

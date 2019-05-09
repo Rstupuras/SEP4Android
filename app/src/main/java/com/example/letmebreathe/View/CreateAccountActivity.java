@@ -61,9 +61,9 @@ public class CreateAccountActivity extends AppCompatActivity implements Navigati
                     return;
                 }
                 if (aBoolean) {
-                    Toast.makeText(getApplicationContext(), "Created successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Created successfully", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Passwords either do not match or are too short", Toast.LENGTH_LONG).show();
                 }
             }
         });
