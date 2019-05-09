@@ -32,7 +32,7 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
     private AllClassroomsViewModel allClassroomsViewModel;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
-    private Account userAcount;
+    private Account userAccount;
 
     @Override
 
@@ -59,7 +59,7 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
         initRecyclerView();
         Intent loginIntent = getIntent();
         Bundle data = loginIntent.getExtras();
-        userAcount = (Account) data.getSerializable("userAccount");
+        userAccount = (Account) data.getSerializable("userAccount");
     }
 
     private void initRecyclerView() {
@@ -74,7 +74,7 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
     public void onListItemClick(int clickedItemIndex) {
         Intent intent = new Intent(AllClassroomsActivity.this, CheckEnvironmentalDataActivity.class);
         intent.putExtra("environmentalData", clickedItemIndex);
-
+        intent.putExtra("userAccount", userAccount);
         startActivity(intent);
     }
 
@@ -100,7 +100,7 @@ public class AllClassroomsActivity extends AppCompatActivity implements Classroo
                 break;
             case R.id.drawerTeacherEditAccount:
                 Intent editAccountsIntent = new Intent(AllClassroomsActivity.this, TeacherEditAccountActivity.class);
-                editAccountsIntent.putExtra("loggedAccount", userAcount);
+                editAccountsIntent.putExtra("userAccount", userAccount);
                 startActivity(editAccountsIntent);
                 break;
             case R.id.drawerSettings:

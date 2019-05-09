@@ -29,7 +29,7 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
     private EditAccountViewModel editAccountViewModel;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
-    private Account loggedAccount;
+    private Account userAccount;
 
 
 //    private String passwordToConfirm;
@@ -49,8 +49,8 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
         binding.setVariable(BR.data, editAccountViewModel);
         Intent allClassroomsIntent = getIntent();
         Bundle data = allClassroomsIntent.getExtras();
-        loggedAccount = (Account) data.getSerializable("loggedAccount");
-        editAccountViewModel.setAccount(loggedAccount.getUserName());
+        userAccount = (Account) data.getSerializable("userAccount");
+        editAccountViewModel.setAccount(userAccount.getUserName());
         editAccountViewModel.updated.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {
@@ -88,6 +88,7 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
         switch (menuItem.getItemId()) {
             case R.id.drawerAllClassrooms:
                 Intent allClassroomsIntent = new Intent(TeacherEditAccountActivity.this, AllClassroomsActivity.class);
+                allClassroomsIntent.putExtra("userAccount", userAccount);
                 startActivity(allClassroomsIntent);
                 break;
             case R.id.drawerTeacherEditAccount:
