@@ -1,5 +1,6 @@
 package com.example.letmebreathe.View;
 
+
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+
 import android.view.MenuItem;
 
 import com.example.letmebreathe.R;
@@ -58,6 +60,7 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
         Intent loginIntent = getIntent();
         Bundle data = loginIntent.getExtras();
         loggedAccount = (Account) data.getSerializable("loggedAdminAccount");
+        System.out.println(adapter.getItemCount());
 
     }
 
@@ -67,6 +70,7 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(AllUsersActivity.this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
+
     }
 
 
@@ -74,20 +78,20 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
     public void onListItemClick(int clickedItemIndex) {
         Intent intent = new Intent(AllUsersActivity.this, AdminEditTeacherAccountActivity.class);
         intent.putExtra("account", clickedItemIndex);
-        intent.putExtra("loggedAdminAccount", loggedAccount);
-        startActivity(intent);
+        intent.putExtra("loggedAd0minAccount", loggedAccount);
+        startActivityForResult(intent, 0);
     }
 
     public void configureToolbar() {
 
         toolbar = findViewById(R.id.toolbar_all_users);
+
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer_layout_all_users);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle
                 (this, drawerLayout, toolbar, R.string.second, R.string.third);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = findViewById(R.id.navigation_all_users);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -113,5 +117,20 @@ public class AllUsersActivity extends AppCompatActivity implements AccountRecycl
         DrawerLayout drawer = findViewById(R.id.drawer_layout_all_users);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println(adapter.getItemCount());
+        if (data != null) {
+            if (data.getExtras().getBoolean("deleted")) {
+                System.out.println("position" + data.getExtras().getInt("position"));
+                adapter.removeItem(data.getExtras().getInt("position"));
+                adapter.notifyItemRemoved(data.getExtras().getInt("position"));
+                adapter.notifyDataSetChanged();
+                System.out.println(adapter.getItemCount());
+            }
+        }
     }
 }

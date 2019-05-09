@@ -7,6 +7,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -21,4 +22,7 @@ public interface API {
 
     @POST("accounts")
     Call<Void> addAccount(@Body Account account);
+
+    @DELETE("accounts/{username}")
+    Call<Void> deleteAccount(@Path("username") String username);
 }

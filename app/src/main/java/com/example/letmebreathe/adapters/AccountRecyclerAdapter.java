@@ -69,4 +69,16 @@ public class AccountRecyclerAdapter extends RecyclerView.Adapter<AccountRecycler
     public interface OnListItemClickListener {
         void onListItemClick(int clickedItemIndex);
     }
+
+    public void clear() {
+        accounts.clear();
+    }
+
+    public void addAll(ArrayList<Account> accountList) {
+        accounts.addAll(accountList);
+    }
+
+    public void removeItem(int position) {
+        accounts.remove(position);
+    }
 }

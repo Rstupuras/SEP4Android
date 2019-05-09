@@ -90,4 +90,21 @@ public class ApiConsumer {
         });
     }
 
+    public void deleteAccount(String username) {
+        Call<Void> call = api.deleteAccount(username);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    getAccounts();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

@@ -16,6 +16,7 @@ public class EditAccountViewModel extends ViewModel {
     private MutableLiveData<List<Account>> accountList;
     private AccountRepository repo;
     public MutableLiveData<Boolean> updated;
+    public MutableLiveData<Boolean> showConfirmDeleteWindow;
 
     public void init() {
         if (accountList != null) {
@@ -25,6 +26,8 @@ public class EditAccountViewModel extends ViewModel {
         accountList = repo.getAccounts();
         updated = new MutableLiveData<>();
         updated.setValue(null);
+        showConfirmDeleteWindow = new MutableLiveData<>();
+        showConfirmDeleteWindow.setValue(null);
     }
 
     public LiveData<List<Account>> getAccountList() {
@@ -55,7 +58,7 @@ public class EditAccountViewModel extends ViewModel {
 
 
     public void updateAccount() {
-        if (account.getPassword().equalsIgnoreCase(account.getPasswordToConfirm()) && account.getPassword().length()>5 && account.getPasswordToConfirm().length()>5) {
+        if (account.getPassword().equalsIgnoreCase(account.getPasswordToConfirm()) && account.getPassword().length() > 5 && account.getPasswordToConfirm().length() > 5) {
             repo.updateAccount(account);
             updated.setValue(true);
 
@@ -75,6 +78,26 @@ public class EditAccountViewModel extends ViewModel {
         this.account = account;
     }
 
+    public MutableLiveData<Boolean> getShowConfirmDeleteWindow() {
+        return showConfirmDeleteWindow;
+    }
+
+    public void setShowConfirmDeleteWindow(MutableLiveData<Boolean> showConfirmDeleteWindow) {
+        this.showConfirmDeleteWindow = showConfirmDeleteWindow;
+    }
+
+    public void showConfirmDeleteWindow() {
+        this.showConfirmDeleteWindow.setValue(true);
+    }
+
+    public void dismissConfirmDeleteWindow() {
+        this.showConfirmDeleteWindow.setValue(false);
+    }
+
+
+    public void deleteAccount() {
+        repo.deleteAccount(account.getUserName());
+    }
 
 
 }

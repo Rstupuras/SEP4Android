@@ -91,10 +91,15 @@ public class AdminEditTeacherAccountViewModel extends ViewModel {
     public void showConfirmDeleteWindow() {
         this.showConfirmDeleteWindow.setValue(true);
     }
+
     public void dismissConfirmDeleteWindow() {
         this.showConfirmDeleteWindow.setValue(false);
     }
-    public void displayConfirmDeleteWindow() {
+
+
+    public void deleteAccount() {
+        repo.deleteAccount(account.getUserName());
 
     }
+
 }

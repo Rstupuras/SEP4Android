@@ -34,8 +34,7 @@ public class AccountRepository {
 
     }
 
-    public void updateAccount(Account account)
-    {
+    public void updateAccount(Account account) {
         data.updateAccount(account);
     }
 
@@ -44,7 +43,9 @@ public class AccountRepository {
     }
 
 
-
+    public void deleteAccount(String username) {
+        data.deleteAccount(username);
+    }
 
 
 }

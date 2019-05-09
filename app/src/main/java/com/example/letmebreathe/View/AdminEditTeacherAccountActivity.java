@@ -1,5 +1,6 @@
 package com.example.letmebreathe.View;
 
+import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
@@ -21,22 +22,18 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.letmebreathe.BR;
-import com.example.letmebreathe.CustomDialog;
 import com.example.letmebreathe.R;
 
 import com.example.letmebreathe.databinding.ActivityAdminEditTeacherAccountBinding;
 import com.example.letmebreathe.models.Account;
 import com.example.letmebreathe.viewModels.AdminEditTeacherAccountViewModel;
-import com.example.letmebreathe.viewModels.EditAccountViewModel;
 
 public class AdminEditTeacherAccountActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private AdminEditTeacherAccountViewModel adminEditTeacherAccountViewModel;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     private Account loggedAccount;
-    Button noButton;
-    Button yesButton;
-
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +45,13 @@ public class AdminEditTeacherAccountActivity extends AppCompatActivity implement
         adminEditTeacherAccountViewModel.init();
         binding.setVariable(BR.data, adminEditTeacherAccountViewModel);
 
-        noButton = findViewById(R.id.btn_no);
-        yesButton = findViewById(R.id.btn_yes);
+
         configureToolbar();
         Intent previousIntent = getIntent();
         Bundle data = previousIntent.getExtras();
         loggedAccount = (Account) data.getSerializable("loggedAdminAccount");
-        int id = data.getInt("account");
-        adminEditTeacherAccountViewModel.setAccount(id);
+        position = data.getInt("account");
+        adminEditTeacherAccountViewModel.setAccount(position);
         adminEditTeacherAccountViewModel.updated.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {
@@ -91,12 +87,22 @@ public class AdminEditTeacherAccountActivity extends AppCompatActivity implement
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
+                            adminEditTeacherAccountViewModel.deleteAccount();
+                            Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(AdminEditTeacherAccountActivity.this, AllUsersActivity.class);
+                            intent.putExtra("loggedAdminAccount", loggedAccount);
+                            intent.putExtra("position", position);
+                            intent.putExtra("deleted", true);
+                            setResult(Activity.RESULT_OK, intent);
+                            finish();
+
                         }
                     });
-                    alertDialog.setOnShowListener( new DialogInterface.OnShowListener() {
+                    alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                         @Override
                         public void onShow(DialogInterface arg0) {
                             alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+
                         }
                     });
 
@@ -116,7 +122,7 @@ public class AdminEditTeacherAccountActivity extends AppCompatActivity implement
 
     public void configureToolbar() {
 
-        toolbar = findViewById(R.id.toolbar_admin_edit);
+        toolbar = findViewById(R.id.toolbar_admin_edit_teacher);
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer_layout_admin_edit);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle

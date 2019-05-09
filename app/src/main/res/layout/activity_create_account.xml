@@ -44,10 +44,10 @@
                         android:id="@+id/toolbar_create_account"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
-                        app:titleTextColor="@android:color/white"
+                        android:minHeight="?attr/actionBarSize"
                         android:theme="@style/AppTheme"
-
-                        android:minHeight="?attr/actionBarSize" />
+                        app:title="Create account"
+                        app:titleTextColor="@android:color/white" />
                 </android.support.design.widget.AppBarLayout>
             </RelativeLayout>
 
@@ -69,10 +69,10 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="100dp"
                     android:layout_marginBottom="10dp"
+                    android:backgroundTint="@color/lightblue"
                     android:hint="@string/username"
                     android:text="@={data.account.userName}"
-                    android:textAlignment="center"
-                    android:backgroundTint="@color/lightblue"/>
+                    android:textAlignment="center" />
 
                 <EditText
                     android:id="@+id/addPassword"
@@ -80,11 +80,11 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
+                    android:backgroundTint="@color/lightblue"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:textAlignment="center"
-                    android:backgroundTint="@color/lightblue"
-                    android:text="@={data.account.password}"/>
+                    android:text="@={data.account.password}"
+                    android:textAlignment="center" />
 
 
                 <EditText
@@ -92,11 +92,11 @@
                     android:layout_width="250dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
+                    android:backgroundTint="@color/lightblue"
                     android:hint="@string/confirm_password"
                     android:inputType="textPassword"
-                    android:textAlignment="center"
-                    android:backgroundTint="@color/lightblue"
-                    android:text="@={data.account.passwordToConfirm}"/>
+                    android:text="@={data.account.passwordToConfirm}"
+                    android:textAlignment="center" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -109,10 +109,9 @@
                         android:id="@+id/saveCreatedAccountButton"
                         android:layout_width="150dp"
                         android:layout_height="50dp"
-                        android:text="@string/save"
-                        android:onClick="@{(view) -> data.addAccount()}"
                         android:background="@color/lightblue"
-                        />
+                        android:onClick="@{(view) -> data.addAccount()}"
+                        android:text="@string/save" />
                 </LinearLayout>
 
 
@@ -125,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:menu="@menu/drawer_menu_admin"/>
+            app:menu="@menu/drawer_menu_admin" />
 
 
     </android.support.v4.widget.DrawerLayout>
