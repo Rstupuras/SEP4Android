@@ -33,7 +33,7 @@ public class LoginViewModel extends ViewModel {
     public Account checkLogin(String username, String password) {
         for (Account a : accounts.getValue()
         ) {
-            if (a.getUserName().equalsIgnoreCase(username) && a.getPassword().equalsIgnoreCase(password)) {
+            if (accountRepository.compareStrings(a.getPassword(), password)) {
                 return a;
             }
         }

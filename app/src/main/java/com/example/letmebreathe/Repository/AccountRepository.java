@@ -9,6 +9,7 @@ import com.example.letmebreathe.models.Account;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AccountRepository {
     private static AccountRepository instance;
@@ -47,5 +48,7 @@ public class AccountRepository {
         data.deleteAccount(username);
     }
 
-
+    public boolean compareStrings(String a, String b) {
+        return Objects.equals(a, b);
+    }
 }
