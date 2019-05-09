@@ -30,7 +30,7 @@ public class LoginView extends AppCompatActivity {
     private Button loginButton;
     private LoginViewModel loginViewModel;
     LinearLayout layout;
-    ProgressBar progress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class LoginView extends AppCompatActivity {
 
         loginButton = findViewById(R.id.loginButton);
         layout = findViewById(R.id.spinnerContainer);
-        progress = findViewById(R.id.progressBar1);
+
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         loginViewModel.init();
         loginViewModel.getAccounts().observe(this, new Observer<List<Account>>() {
@@ -57,11 +57,11 @@ public class LoginView extends AppCompatActivity {
             public void onClick(View v) {
 
                 layout.setVisibility(View.VISIBLE);
-                progress.setVisibility(View.VISIBLE);
+
                 Account response = loginViewModel.checkLogin(String.valueOf(username.getText()), String.valueOf(password.getText()));
                 if (response == null) {
                     layout.setVisibility(View.GONE);
-                    progress.setVisibility(View.GONE);
+
                     Toast.makeText(getApplicationContext(), "DENIED", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -87,7 +87,7 @@ public class LoginView extends AppCompatActivity {
     @Override
     protected void onResume() {
         layout.setVisibility(View.GONE);
-        progress.setVisibility(View.GONE);
+
         super.onResume();
     }
 }
