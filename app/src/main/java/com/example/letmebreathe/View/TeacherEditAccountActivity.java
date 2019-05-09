@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.letmebreathe.BR;
@@ -32,6 +33,7 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
     private EditAccountViewModel editAccountViewModel;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
+    LinearLayout layout;
     private Account userAccount;
 
 
@@ -118,6 +120,8 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
                 }
             }
         });
+
+        layout = findViewById(R.id.spinnerContainerEdit);
     }
 
     public void configureToolbar() {
@@ -139,6 +143,7 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.drawerAllClassrooms:
+                layout.setVisibility(View.VISIBLE);
                 Intent allClassroomsIntent = new Intent(TeacherEditAccountActivity.this, AllClassroomsActivity.class);
                 allClassroomsIntent.putExtra("userAccount", userAccount);
                 startActivity(allClassroomsIntent);
@@ -158,6 +163,14 @@ public class TeacherEditAccountActivity extends AppCompatActivity implements Nav
         DrawerLayout drawer = findViewById(R.id.drawer_layout_teacher_edit);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    @Override
+    protected void onResume() {
+        layout.setVisibility(View.GONE);
+
+        super.onResume();
     }
 
 

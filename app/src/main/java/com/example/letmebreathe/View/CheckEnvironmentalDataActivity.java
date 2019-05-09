@@ -15,6 +15,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 
 import com.example.letmebreathe.BR;
@@ -40,7 +42,7 @@ public class CheckEnvironmentalDataActivity extends AppCompatActivity implements
     private ArrayList<EnvironmentalData> data;
 
     private Account userAccount;
-
+    LinearLayout layout;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
 
@@ -70,6 +72,8 @@ public class CheckEnvironmentalDataActivity extends AppCompatActivity implements
         Bundle data = loginIntent.getExtras();
         userAccount = (Account) data.getSerializable("userAccount");
 
+        layout = findViewById(R.id.spinnerContainerCheck);
+
     }
 
 
@@ -93,6 +97,7 @@ public class CheckEnvironmentalDataActivity extends AppCompatActivity implements
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.drawerAllClassrooms:
+                layout.setVisibility(View.VISIBLE);
                 Intent allClassroomsIntent = new Intent(CheckEnvironmentalDataActivity.this, AllClassroomsActivity.class);
                 allClassroomsIntent.putExtra("userAccount", userAccount);
                 startActivity(allClassroomsIntent);
@@ -114,6 +119,13 @@ public class CheckEnvironmentalDataActivity extends AppCompatActivity implements
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    @Override
+    protected void onResume() {
+        layout.setVisibility(View.GONE);
+        super.onResume();
     }
 
 
