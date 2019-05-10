@@ -21,17 +21,23 @@ public class EnvironmentalData implements Serializable {
     private String time;
 
 
+
+    @SerializedName("date")
+    private String date;
+
+
     private static DecimalFormat df2 = new DecimalFormat(".##");
 
     public EnvironmentalData() {
 
     }
 
-    public EnvironmentalData(String location, double CO2, double temperature, String time) {
+    public EnvironmentalData(String location, double CO2, double temperature, String time, String date) {
         this.location = location;
         this.CO2 = CO2;
         this.temperature = temperature;
         this.time = time;
+        this.date = date;
     }
 
     public String getLocation() {
@@ -64,6 +70,14 @@ public class EnvironmentalData implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
 

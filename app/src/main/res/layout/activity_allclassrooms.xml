@@ -33,6 +33,7 @@
                     android:layout_height="?attr/actionBarSize"
                     android:theme="@style/AppTheme"
                     android:minHeight="?attr/actionBarSize"
+                    app:title="All classrooms"
                     app:titleTextColor="@android:color/white"/>
             </android.support.design.widget.AppBarLayout>
         </RelativeLayout>
