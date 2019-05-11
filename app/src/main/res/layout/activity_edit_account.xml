@@ -80,7 +80,7 @@
                     android:background="@drawable/border2"
                     android:focusableInTouchMode="false"
                     android:hint="@string/username"
-                    android:padding="15dp"
+                    android:gravity="center"
                     android:text="@{data.account.userName}"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"

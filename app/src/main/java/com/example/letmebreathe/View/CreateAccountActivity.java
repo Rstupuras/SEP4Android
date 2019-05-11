@@ -54,16 +54,35 @@ public class CreateAccountActivity extends AppCompatActivity implements Navigati
         createAccountViewModel = ViewModelProviders.of(this).get(CreateAccountViewModel.class);
         createAccountViewModel.init();
 
-        createAccountViewModel.updated.observe(this, new Observer<Boolean>() {
+        createAccountViewModel.updated.observe(this, new Observer<Integer>() {
             @Override
-            public void onChanged(@Nullable Boolean aBoolean) {
-                if (aBoolean == null) {
+            public void onChanged(@Nullable Integer integer) {
+                if (integer == null) {
                     return;
                 }
-                if (aBoolean) {
+                if (integer == 1) {
                     Toast.makeText(getApplicationContext(), "Created successfully", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Passwords either do not match or are too short", Toast.LENGTH_LONG).show();
+
+                }
+                if (integer == 2){
+                    Toast.makeText(getApplicationContext(), "Username has to be at least 6 symbols", Toast.LENGTH_LONG).show();
+
+                }
+                if (integer == 3){
+                    Toast.makeText(getApplicationContext(), "Passwords does not match", Toast.LENGTH_LONG).show();
+
+                }
+                if (integer == 4){
+                    Toast.makeText(getApplicationContext(), "Password has to be at least 6 symbols", Toast.LENGTH_LONG).show();
+
+                }
+                if (integer == 5){
+                    Toast.makeText(getApplicationContext(), "Username already exists", Toast.LENGTH_LONG).show();
+
+                }
+                if (integer == 0){
+                    Toast.makeText(getApplicationContext(), "Denied", Toast.LENGTH_LONG).show();
+
                 }
             }
         });

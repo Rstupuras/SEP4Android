@@ -51,4 +51,13 @@ public class AccountRepository {
     public boolean compareStrings(String a, String b) {
         return Objects.equals(a, b);
     }
+
+    public boolean doesNotAccountExists (String username){
+        for (int i = 0; i < accounts.size(); i++){
+            if (accounts.get(i).getUserName().equals(username)){
+                return false;
+            }
+        }
+        return true;
+    }
 }
