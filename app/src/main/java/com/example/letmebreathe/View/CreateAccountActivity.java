@@ -14,7 +14,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -23,7 +22,6 @@ import com.example.letmebreathe.R;
 import com.example.letmebreathe.databinding.ActivityCreateAccountBinding;
 import com.example.letmebreathe.models.Account;
 import com.example.letmebreathe.viewModels.CreateAccountViewModel;
-import com.example.letmebreathe.viewModels.EditAccountViewModel;
 
 public class CreateAccountActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -64,23 +62,23 @@ public class CreateAccountActivity extends AppCompatActivity implements Navigati
                     Toast.makeText(getApplicationContext(), "Created successfully", Toast.LENGTH_LONG).show();
 
                 }
-                if (integer == 2){
+                if (integer == 2) {
                     Toast.makeText(getApplicationContext(), "Username has to be at least 6 symbols", Toast.LENGTH_LONG).show();
 
                 }
-                if (integer == 3){
+                if (integer == 3) {
                     Toast.makeText(getApplicationContext(), "Passwords does not match", Toast.LENGTH_LONG).show();
 
                 }
-                if (integer == 4){
+                if (integer == 4) {
                     Toast.makeText(getApplicationContext(), "Password has to be at least 6 symbols", Toast.LENGTH_LONG).show();
 
                 }
-                if (integer == 5){
+                if (integer == 5) {
                     Toast.makeText(getApplicationContext(), "Username already exists", Toast.LENGTH_LONG).show();
 
                 }
-                if (integer == 0){
+                if (integer == 0) {
                     Toast.makeText(getApplicationContext(), "Denied", Toast.LENGTH_LONG).show();
 
                 }

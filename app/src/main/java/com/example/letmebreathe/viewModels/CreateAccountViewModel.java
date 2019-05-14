@@ -1,15 +1,10 @@
 package com.example.letmebreathe.viewModels;
 
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-import android.databinding.DataBindingUtil;
 
-import com.example.letmebreathe.R;
 import com.example.letmebreathe.Repository.AccountRepository;
 import com.example.letmebreathe.View.CreateAccountActivity;
-import com.example.letmebreathe.databinding.ActivityCreateAccountBinding;
 import com.example.letmebreathe.models.Account;
 
 
@@ -40,28 +35,27 @@ public class CreateAccountViewModel extends ViewModel {
     public void addAccount() {
 
 
-
         if (account.getPassword().equals(account.getPasswordToConfirm()) && account.getPassword().length() > 5 && account.getPasswordToConfirm().length() > 5 && repo.doesNotAccountExists(account.getUserName()) && account.getUserName().length() > 5) {
             repo.addAccount(account);
             updated.setValue(1);
             return;
-        } if (account.getUserName().length() < 6){
+        }
+        if (account.getUserName().length() < 6) {
             updated.setValue(2);
             return;
         }
-        if (!(account.getPassword().equals(account.getPasswordToConfirm()))){
+        if (!(account.getPassword().equals(account.getPasswordToConfirm()))) {
             updated.setValue(3);
             return;
         }
-        if (account.getPassword().length() < 6){
+        if (account.getPassword().length() < 6) {
             updated.setValue(4);
             return;
         }
-        if (!(repo.doesNotAccountExists(account.getUserName()))){
+        if (!(repo.doesNotAccountExists(account.getUserName()))) {
             updated.setValue(5);
             return;
-        }
-        else {
+        } else {
             updated.setValue(0);
             return;
         }

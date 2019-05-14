@@ -4,9 +4,7 @@ import com.example.letmebreathe.models.Account;
 import com.example.letmebreathe.models.EnvironmentalData;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.xml.transform.Result;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

@@ -2,18 +2,13 @@ package com.example.letmebreathe.WebAPI;
 
 import android.os.AsyncTask;
 
-
-import com.example.letmebreathe.View.CheckEnvironmentalDataActivity;
 import com.example.letmebreathe.models.Account;
 import com.example.letmebreathe.models.EnvironmentalData;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
-import javax.xml.transform.Result;
+import java.util.concurrent.ExecutionException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,12 +37,10 @@ public class ApiConsumer {
     public ApiConsumer() {
         retrofit = new Retrofit.Builder().baseUrl("https://sep4dataapi.azurewebsites.net/api/").addConverterFactory(GsonConverterFactory.create()).build();
         api = retrofit.create(API.class);
-
     }
 
 
     public ArrayList<Account> getAccounts() {
-
         final Call<ArrayList<Account>> call = api.getAccounts();
         call.enqueue(new Callback<ArrayList<Account>>() {
             @Override
@@ -64,7 +57,6 @@ public class ApiConsumer {
             }
         });
         return accounts;
-
     }
 
     public void updateAccount(Account account) {
@@ -144,7 +136,6 @@ public class ApiConsumer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         return environmentalData;
     }
 

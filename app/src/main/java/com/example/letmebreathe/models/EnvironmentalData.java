@@ -21,7 +21,6 @@ public class EnvironmentalData implements Serializable {
     private String time;
 
 
-
     @SerializedName("date")
     private String date;
 

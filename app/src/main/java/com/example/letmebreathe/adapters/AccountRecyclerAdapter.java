@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.letmebreathe.R;
 import com.example.letmebreathe.models.Account;
-import com.example.letmebreathe.models.EnvironmentalData;
+
 
 import java.util.ArrayList;
 
@@ -50,9 +50,7 @@ public class AccountRecyclerAdapter extends RecyclerView.Adapter<AccountRecycler
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
         TextView username;
-
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);

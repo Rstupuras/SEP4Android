@@ -22,18 +22,15 @@ import android.widget.LinearLayout;
 import com.example.letmebreathe.BR;
 import com.example.letmebreathe.R;
 
-import com.example.letmebreathe.WebAPI.API;
+
 import com.example.letmebreathe.databinding.ActivityCheckEnvironmentalDataBinding;
 import com.example.letmebreathe.models.Account;
 import com.example.letmebreathe.models.EnvironmentalData;
 import com.example.letmebreathe.viewModels.CheckEnvironmentalDataViewModel;
 
-import java.io.IOException;
+
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CheckEnvironmentalDataActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -64,21 +61,18 @@ public class CheckEnvironmentalDataActivity extends AppCompatActivity implements
         if (preferedTemperature.equals("Celsius")) {
             checkEnvironmentalDataViewModel.setData(id);
         }
-        if (preferedTemperature.equals("Fahrenheit")){
+        if (preferedTemperature.equals("Fahrenheit")) {
             checkEnvironmentalDataViewModel.setDataFahrenheit(id);
         }
         configureToolbar();
         Intent loginIntent = getIntent();
         Bundle data = loginIntent.getExtras();
         userAccount = (Account) data.getSerializable("userAccount");
-
         layout = findViewById(R.id.spinnerContainerCheck);
-
     }
 
 
     public void configureToolbar() {
-//        setContentView(R.layout.drawer_layout_user);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -89,7 +83,6 @@ public class CheckEnvironmentalDataActivity extends AppCompatActivity implements
 
         NavigationView navigationView = findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(this);
-        //setContentView(R.layout.activity_allclassrooms);
     }
 
 

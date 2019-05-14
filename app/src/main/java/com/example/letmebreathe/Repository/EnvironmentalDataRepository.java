@@ -1,18 +1,14 @@
 package com.example.letmebreathe.Repository;
 
 import android.arch.lifecycle.MutableLiveData;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
+
 
 import com.example.letmebreathe.WebAPI.ApiConsumer;
 import com.example.letmebreathe.models.EnvironmentalData;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 public class EnvironmentalDataRepository {
     private static EnvironmentalDataRepository instance;
@@ -45,13 +41,10 @@ public class EnvironmentalDataRepository {
         MutableLiveData<List<EnvironmentalData>> data = new MutableLiveData<>();
         data.setValue(environmentalDataFromAPI);
         return data;
-
     }
 
 
     public void setEnvironmentalDataFromAPI() {
-
-
         this.environmentalDataFromAPI = (ArrayList<EnvironmentalData>) data.getEnvironmentalFromAPI();
     }
 

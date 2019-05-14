@@ -14,17 +14,17 @@ import com.example.letmebreathe.models.EnvironmentalData;
 import java.util.ArrayList;
 
 
-public class ClassroomRecyclerAdapter extends RecyclerView.Adapter<ClassroomRecyclerAdapter.ViewHolder>{
+public class ClassroomRecyclerAdapter extends RecyclerView.Adapter<ClassroomRecyclerAdapter.ViewHolder> {
 
 
     final private OnListItemClickListener onListItemClickListener;
     private ArrayList<EnvironmentalData> classrooms;
     private Context context;
 
-    public ClassroomRecyclerAdapter(Context context, ArrayList<EnvironmentalData> classrooms, OnListItemClickListener onListItemClickListener){
+    public ClassroomRecyclerAdapter(Context context, ArrayList<EnvironmentalData> classrooms, OnListItemClickListener onListItemClickListener) {
         this.onListItemClickListener = onListItemClickListener;
         this.classrooms = classrooms;
-        this.context =context;
+        this.context = context;
     }
 
     @NonNull
@@ -46,12 +46,12 @@ public class ClassroomRecyclerAdapter extends RecyclerView.Adapter<ClassroomRecy
     }
 
 
-    public ArrayList<EnvironmentalData> getEnvironmentalDataList() {return classrooms;}
+    public ArrayList<EnvironmentalData> getEnvironmentalDataList() {
+        return classrooms;
+    }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
         TextView classId;
-
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);

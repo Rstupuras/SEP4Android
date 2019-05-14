@@ -34,10 +34,7 @@ public class EditAccountViewModel extends ViewModel {
         return accountList;
     }
 
-    //    public String getUsername() {
-//        return username;
-//    }
-//
+
     public void setAccount(int id) {
         account = accountList.getValue().get(id);
         account.setPassword("");

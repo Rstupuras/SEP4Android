@@ -3,8 +3,6 @@
 package com.example.letmebreathe.View;
 
 import android.preference.PreferenceActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -13,7 +11,7 @@ import android.widget.LinearLayout;
 
 import com.example.letmebreathe.R;
 
-public class SettingsActivity extends PreferenceActivity  {
+public class SettingsActivity extends PreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +24,7 @@ public class SettingsActivity extends PreferenceActivity  {
         super.onPostCreate(savedInstance);
 
 
-        LinearLayout root = (LinearLayout)findViewById(android.R.id.list).getParent().getParent().getParent();
+        LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
         Toolbar bar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.settings_toolbar, root, false);
 
         root.addView(bar, 0); // insert at top
@@ -37,5 +35,5 @@ public class SettingsActivity extends PreferenceActivity  {
             }
         });
     }
-    }
+}
 

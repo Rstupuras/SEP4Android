@@ -6,7 +6,6 @@ import android.arch.lifecycle.ViewModel;
 
 import com.example.letmebreathe.Repository.AccountRepository;
 
-
 import com.example.letmebreathe.models.Account;
 
 

@@ -3,7 +3,6 @@ package com.example.letmebreathe.Repository;
 
 import android.arch.lifecycle.MutableLiveData;
 
-
 import com.example.letmebreathe.WebAPI.ApiConsumer;
 import com.example.letmebreathe.models.Account;
 
@@ -52,9 +51,9 @@ public class AccountRepository {
         return Objects.equals(a, b);
     }
 
-    public boolean doesNotAccountExists (String username){
-        for (int i = 0; i < accounts.size(); i++){
-            if (accounts.get(i).getUserName().equals(username)){
+    public boolean doesNotAccountExists(String username) {
+        for (int i = 0; i < accounts.size(); i++) {
+            if (accounts.get(i).getUserName().equals(username)) {
                 return false;
             }
         }

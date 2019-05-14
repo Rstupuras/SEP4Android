@@ -3,7 +3,6 @@ package com.example.letmebreathe.models;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.nio.file.Path;
 
 public class Account implements Serializable {
 
